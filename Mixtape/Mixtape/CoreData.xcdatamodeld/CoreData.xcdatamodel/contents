@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="Playlist" representedClassName=".Playlist" parentEntity="SyncableObject" syncable="YES">
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Song" representedClassName=".Song" parentEntity="SyncableObject" syncable="YES">
+        <attribute name="artist" attributeType="String" syncable="YES"/>
+        <attribute name="image" attributeType="Binary" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="trackID" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="SyncableObject" representedClassName=".SyncableObject" syncable="YES">
+        <attribute name="recordIDData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="recordName" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" parentEntity="SyncableObject" syncable="YES">
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="user" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Playlist" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Song" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="User" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="SyncableObject" positionX="-9" positionY="81" width="128" height="75"/>
+    </elements>
+</model>

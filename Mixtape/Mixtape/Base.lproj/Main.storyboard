@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G6G-rq-fxy">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="7Qw-rT-fyJ">
+            <objects>
+                <viewController id="G6G-rq-fxy" customClass="LoginViewController" customModule="Mixtape" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XpN-WH-OhM"/>
+                        <viewControllerLayoutGuide type="bottom" id="NPd-Lt-jNH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7fP-zV-f81">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MixtapeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Lwg-I7-8vP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4r-la-7Jm">
+                                <rect key="frame" x="48" y="239" width="225" height="30"/>
+                                <color key="textColor" red="0.59607843137254901" green="0.86274509803921573" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKq-5B-Pra">
+                                <rect key="frame" x="138" y="401" width="45" height="30"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" red="0.14901960784313725" green="0.41568627450980394" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tSn-2a-11o" kind="show" id="Zqb-HA-Cni"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huN-Go-jgn">
+                                <rect key="frame" x="98" y="277" width="124" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Need an account?">
+                                    <color key="titleColor" red="0.30588235294117649" green="0.75686274509803919" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="accountButtonTapped:" destination="G6G-rq-fxy" eventType="touchUpInside" id="76f-uT-DC5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0039215686274509803" green="0.043137254901960784" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="NPd-Lt-jNH" firstAttribute="top" secondItem="Lwg-I7-8vP" secondAttribute="bottom" id="CcW-Lc-SDf"/>
+                            <constraint firstAttribute="trailing" secondItem="Lwg-I7-8vP" secondAttribute="trailing" id="FD5-ep-79n"/>
+                            <constraint firstItem="Lwg-I7-8vP" firstAttribute="top" secondItem="7fP-zV-f81" secondAttribute="top" id="gVp-fi-t49"/>
+                            <constraint firstItem="Lwg-I7-8vP" firstAttribute="leading" secondItem="7fP-zV-f81" secondAttribute="leading" id="mxw-ym-cDi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tte-DM-BAG"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="accountButton" destination="huN-Go-jgn" id="DPn-Bj-jLb"/>
+                        <outlet property="loginButtonTapped" destination="wKq-5B-Pra" id="23y-LP-meW"/>
+                        <outlet property="passwordTextField" destination="Lwg-I7-8vP" id="mwF-dx-Hsn"/>
+                        <outlet property="usernameTextField" destination="m4r-la-7Jm" id="C7b-Eq-bFY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ykj-gP-ZH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="365"/>
+        </scene>
+        <!--Play-->
+        <scene sceneID="LWt-Gk-eHj">
+            <objects>
+                <tableViewController id="lNS-aL-IrF" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xhw-T3-LGj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aBA-3m-X6z">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aBA-3m-X6z" id="VZD-aF-Ofp">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lNS-aL-IrF" id="XQa-9f-IXB"/>
+                            <outlet property="delegate" destination="lNS-aL-IrF" id="TCC-yp-gkn"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Play" id="aOa-bq-guf"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSg-gt-qzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1270" y="365"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="7G1-to-Lxa">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="tSn-2a-11o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="CRw-Yu-OvM">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lNS-aL-IrF" kind="relationship" relationship="viewControllers" id="APK-dX-rvq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZi-RP-Mze" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="365"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MixtapeLogo" width="313" height="554"/>
+    </resources>
+</document>
