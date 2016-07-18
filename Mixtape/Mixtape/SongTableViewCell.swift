@@ -15,10 +15,26 @@ class SongTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBOutlet weak var albumArt: UIImageView!
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
+    @IBOutlet weak var trackNameLabel: UILabel!
+   
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
+    
+    func updateWithSong(song: Song) {
+        trackNameLabel.text = Song.kTrackName
+        artistNameLabel.text = Song.kArtistName 
+        //albumArt.image = Song.kImage
+        
+    }
+
 
 }

@@ -14,8 +14,23 @@ class Stack {
     static let sharedStack = Stack()
     
     lazy var managedObjectContext: NSManagedObjectContext = Stack.setUpMainContext()
+    lazy var scratchPadMOC: NSManagedObjectContext = Stack.setUpScratchPadContext()
     
     static func setUpMainContext() -> NSManagedObjectContext {
+        let bundle = NSBundle.mainBundle()
+        guard let model = NSManagedObjectModel.mergedModelFromBundles([bundle])
+            else { fatalError("model not found") }
+        let psc = NSPersistentStoreCoordinator(managedObjectModel: model)
+        try! psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil,
+                                            URL: storeURL(), options: [NSMigratePersistentStoresAutomaticallyOption: true,
+                                                NSInferMappingModelAutomaticallyOption: true])
+        let context = NSManagedObjectContext(
+            concurrencyType: .MainQueueConcurrencyType)
+        context.persistentStoreCoordinator = psc
+        return context
+    }
+    
+    static func setUpScratchPadContext() -> NSManagedObjectContext {
         let bundle = NSBundle.mainBundle()
         guard let model = NSManagedObjectModel.mergedModelFromBundles([bundle])
             else { fatalError("model not found") }

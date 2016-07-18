@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+@objc protocol SearchableRecord: class {
+    func matchesSearchTerm(searchTerm: String) -> Bool
+}
+

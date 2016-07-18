@@ -7,29 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
-class PlaylistViewController: UIViewController {
-
+class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+    
+    var fetchedResultsController: NSFetchedResultsController?
+    
+    let songs = [Song]?()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        }
+    
+    @IBOutlet weak var playlistTableView: UITableView!
+    
+    // MARK: - Table view data source
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return songs?.count ?? 0
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+       guard let cell = tableView.dequeueReusableCellWithIdentifier("songCell", forIndexPath: indexPath) as? SongTableViewCell,
+        let song = songs?[indexPath.row] else {
+            return UITableViewCell() }
+        
+        cell.updateWithSong(song)
+        return cell
     }
-    */
-
 }

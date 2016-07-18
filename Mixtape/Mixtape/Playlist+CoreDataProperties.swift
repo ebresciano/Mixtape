@@ -14,6 +14,6 @@ import CoreData
 
 extension Playlist {
 
-    @NSManaged var user: User?
+    @NSManaged var user: User
 
 }

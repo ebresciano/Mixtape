@@ -10,37 +10,64 @@ import UIKit
 
 
 class LoginViewController: UIViewController {
-
-        override func viewDidLoad() {
-                   }
-
-        // Do any additional setup after loading the view.
+    
+    override func viewDidLoad() {
+    usernameTextField.hidden = true
+    }
     
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var accountButton: UIButton!
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet weak var loginButton: UIButton!
+    
+    enum Account {
+        case existing
+        case new
     }
     
+    var account = Account.existing
+    
+    func updateLoginView() {
+        if account == .existing  {
+            account = .new
+            usernameTextField.hidden = false
+            accountButton.setTitle("Need an account?", forState: .Normal)
+        } else {
+            account = .existing
+            usernameTextField.hidden = true
+            accountButton.setTitle("Have an account", forState: .Normal)
+        }
+    }
+    
+    func checkForAccount() {
+        if account == .existing {
+            let allUsers = UserController.sharedController.users
+            for user in allUsers {
+                if user.username == usernameTextField.text {
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyBoard.instantiateViewControllerWithIdentifier("PlaylistViewController")
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                }
+            }
+        } else {
+            if account == .new {
+                if let username = usernameTextField.text where username.characters.count > 0 {
+                    UserController.sharedController.createUser(username)
+                    
+                }
+            }
+        }
+    }
     
     @IBAction func accountButtonTapped(sender: AnyObject) {
+        updateLoginView()
     }
     
-    @IBOutlet weak var loginButtonTapped: UIButton!
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func loginButtonTapped(sender: AnyObject) {
+        checkForAccount()
     }
-    */
-
+    
+    
 }
 

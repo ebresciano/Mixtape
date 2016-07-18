@@ -9,7 +9,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="trackID" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="songs" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="SyncableObject" representedClassName=".SyncableObject" syncable="YES">
         <attribute name="recordIDData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -17,13 +17,13 @@
     </entity>
     <entity name="User" representedClassName=".User" parentEntity="SyncableObject" syncable="YES">
         <attribute name="username" attributeType="String" syncable="YES"/>
-        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="user" inverseEntity="Song" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="user" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Playlist" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="Song" positionX="-54" positionY="-9" width="128" height="135"/>
-        <element name="User" positionX="-36" positionY="9" width="128" height="90"/>
-        <element name="SyncableObject" positionX="-9" positionY="81" width="128" height="75"/>
+        <element name="Playlist" positionX="-45" positionY="-153" width="128" height="60"/>
+        <element name="Song" positionX="286" positionY="90" width="128" height="135"/>
+        <element name="SyncableObject" positionX="-27" positionY="132" width="128" height="75"/>
+        <element name="User" positionX="340" positionY="-279" width="128" height="90"/>
     </elements>
 </model>

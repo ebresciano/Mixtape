@@ -13,45 +13,38 @@ import CloudKit
 
 class UserController {
     
-    private let allUsersKey = "allUsers"
-    
-    var users: [User] {
-        var newList = [User]()
-        if let userList = NSUserDefaults.standardUserDefaults().arrayForKey(allUsersKey) as? [[String: AnyObject]] {
-            for dict in userList {
-                if let user = User(username: username) {
-                    newList.append(user)
-                }
-            }
-            return newList
-        }
-        
-        return []
-    }
-    
-    var currentUser: User?
-    
     static let sharedController = UserController()
     
-    private let userDataKey = "userData"
+    let fetchRequest = NSFetchRequest(entityName: "User")
     
-    init() {
-        
-        guard let _ = NSUserDefaults.standardUserDefaults().arrayForKey(allUsersKey) as? [[String: AnyObject]] else {
-            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: allUsersKey)
-            return
+    var users: [User] {
+        let moc = Stack.sharedStack.managedObjectContext
+        do {
+            if let users = try moc.executeFetchRequest(fetchRequest) as? [User] {
+                print(users)
+                return users
+            } else {
+                return []
+            }
+
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return []
         }
-        
     }
     
     func createUser(username: String) {
-        var oldUsersList = NSUserDefaults.standardUserDefaults().arrayForKey(allUsersKey) as? [[String: AnyObject]] ?? [[String: AnyObject]]()
-        let newUser = User(username: username)
-        let newUserDictionary = newUser.dictionaryCopy
-        oldUsersList.append(newUserDictionary)
-        NSUserDefaults.standardUserDefaults().setObject(oldUsersList, forKey: allUsersKey)
+        let _ = User(username: username)
+        saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try Stack.sharedStack.managedObjectContext.save()
+        } catch {
+            print("Very very sorry, could not save")
+        }
     }
 }
-
 
 

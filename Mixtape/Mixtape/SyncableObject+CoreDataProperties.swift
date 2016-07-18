@@ -15,6 +15,6 @@ import CoreData
 extension SyncableObject {
 
     @NSManaged var recordIDData: NSData?
-    @NSManaged var recordName: String?
+    @NSManaged var recordName: String
 
 }
