@@ -15,7 +15,7 @@ import CoreData
 extension Song {
 
     @NSManaged var artist: String
-    @NSManaged var image: NSData
+    @NSManaged var image: NSData?
     @NSManaged var timestamp: NSDate
     @NSManaged var title: String
     @NSManaged var trackID: String

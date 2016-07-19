@@ -34,7 +34,7 @@ class UserController {
     }
     
     func createUser(username: String) {
-        let _ = User(username: username)
+        _ = User(username: username)
         saveContext()
     }
     

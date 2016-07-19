@@ -13,20 +13,20 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
     var searchController: UISearchController?
     var resultsArray: [SearchableRecord] = []
     var users: [User]?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchController()
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(resultsArray.count)
         return resultsArray.count
     }
-    
-    
+
+
     // MARK: - Search Controller
     
     func setUpSearchController() {
@@ -57,6 +57,6 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
         
         return cell
         
-    }
-    
+        }
+
 }

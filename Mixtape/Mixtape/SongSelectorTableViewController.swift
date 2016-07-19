@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class SongSelectorTableViewController: UITableViewController {
+    
+    var fetchedResultsController: NSFetchedResultsController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +22,9 @@ class SongSelectorTableViewController: UITableViewController {
     
     @IBOutlet weak var songSearchBar: UISearchBar!
     
-    @IBOutlet weak var albumArtView: UIImageView!
-    
-    @IBOutlet weak var artistNameTextField: UILabel!
-    
-    @IBOutlet weak var trackNameTextField: UILabel!
-    
+    @IBAction func addToPlaylistButtonTapped(sender: AnyObject) {
+        
+    }
     
     
     // MARK: - Table view data source
@@ -34,42 +34,45 @@ class SongSelectorTableViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("songResultsCell", forIndexPath: indexPath)
-//        _ = songs[indexPath.row]
+        let song = songs[indexPath.row]
         
-        // Configure the cell...
+        cell.textLabel?.text = song.title
+        cell.detailTextLabel?.text = song.artist
         
         return cell
     }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        songSearchBar.resignFirstResponder()
+    }
+    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         SongController.searchSongsByTitle(searchTerm) { (songs) in
             self.songs = songs
             print(songs.count)
-            //self.albumArtView.image = Song.kImage
-            self.artistNameTextField.text = Song.kArtist
-            self.trackNameTextField.text = Song.kTitle
-//            dispatch_async(dispatch_get_main_queue(),{
-                if songs.count > 0 {
-                    self.tableView.reloadData()
-                } else {
-                    return
-                }
-//            })
+            if songs.count > 0 {
+                self.tableView.reloadData()
+            } else {
+                return
+            }
         }
     }
     
+    // MARK: - Navigation
+    
+//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "songSelectorToPlaylist" {
+//            if let  pvc = segue.destinationViewController as? PlaylistViewController,
+//                let indexPath = self.tableView.indexPathForSelectedRow,
+//            let song = fetchedResultsController?.objectAtIndexPath(indexPath) as? Song {
+//                
+//                PlaylistViewController.song = song
+//            
+//            }
+//        }
     
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
