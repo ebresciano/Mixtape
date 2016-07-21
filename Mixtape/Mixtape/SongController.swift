@@ -105,7 +105,7 @@ class SongController {
         do {
             try Stack.sharedStack.managedObjectContext.save()
         } catch {
-            print("Very very sorry, could not save")
+            print("Very very sorry, could not save Song. ERROR: \(error)")
         }
     }
     

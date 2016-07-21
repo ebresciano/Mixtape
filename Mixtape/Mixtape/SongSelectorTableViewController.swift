@@ -15,6 +15,8 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        songSearchBar.becomeFirstResponder()
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
@@ -41,14 +43,10 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         
         SongController.getAlbumArtForSong(song, completion: { (songImage) in
             if songImage != nil {
-                print("There is artwork for this song")
                 cell.updateWithSong(song)
             }
         })
         cell.delegate = self
-        
-        //        cell.textLabel?.text = song.title
-        //        cell.detailTextLabel?.text = song.artist
         
         return cell
     }
@@ -79,30 +77,6 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         }
     }
     
-    // MARK: - Navigation
-    
-    //     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if segue.identifier == "songSelectorToPlaylist" {
-    //            if let  pvc = segue.destinationViewController as? PlaylistViewController,
-    //                let indexPath = self.tableView.indexPathForSelectedRow,
-    //            let song = fetchedResultsController?.objectAtIndexPath(indexPath) as? Song {
-    //
-    //            }
-    //        }
-    //
-    //    }
     
 }
 
-/* if let image = albumArtImage.image,
- title = songTitleLabel.text,
- artist = songArtistLabel.text,
- user = UserController.sharedController.currentUser {
- SongController.sharedController.postSong(artist, title: title, user: user, image: image, trackID: trackID) {
- let storyBoard = UIStoryboard(name: "Main", bundle: nil)
- let viewController = storyBoard.instantiateViewControllerWithIdentifier("PlaylistViewController")
- self.presentViewController(viewController, animated: true, completion: nil)
- 
- 
- }
- }*/

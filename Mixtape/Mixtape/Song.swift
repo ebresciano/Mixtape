@@ -38,8 +38,11 @@ class Song: SyncableObject, CloudKitManagedObject {
         guard let entity = NSEntityDescription.entityForName(Song.kType, inManagedObjectContext: context) else { fatalError() }
         
         self.init(entity: entity, insertIntoManagedObjectContext: context)
-        self.timestamp = timestamp
         self.title = title
+        self.artist = artist
+        self.image = image
+        self.trackID = trackID
+        self.timestamp = timestamp
         self.recordName = self.nameForManagedObject()
         self.user = user 
     }

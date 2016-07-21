@@ -21,7 +21,7 @@ class PlaylistController {
         do {
             try Stack.sharedStack.managedObjectContext.save()
         } catch {
-            print("Very very sorry, could not save")
+            print("Very very sorry, could not save song to playlist")
         }
     }
 //    
