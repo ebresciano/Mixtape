@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ykj-gP-ZH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="321"/>
+            <point key="canvasLocation" x="656" y="321"/>
         </scene>
         <!--Song Selector Table View Controller-->
         <scene sceneID="z4r-vL-3mH">
@@ -105,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="136" width="320" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZJ-gm-C8g" id="Ks1-y5-Oz2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykb-vr-Gfa">
@@ -164,7 +164,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Ucr-bB-rz8"/>
+                    <navigationItem key="navigationItem" id="Ucr-bB-rz8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VY0-pF-bme">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="w9f-hx-FS0" id="DbA-j9-WV1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>

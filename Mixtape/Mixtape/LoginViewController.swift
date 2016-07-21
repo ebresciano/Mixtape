@@ -55,6 +55,7 @@ class LoginViewController: UIViewController {
                 if let username = usernameTextField.text where username.characters.count > 0 {
                     UserController.sharedController.createUser(username)
                     
+                    
                 }
             }
         }

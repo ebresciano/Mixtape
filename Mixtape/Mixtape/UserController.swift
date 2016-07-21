@@ -17,6 +17,10 @@ class UserController {
     
     let fetchRequest = NSFetchRequest(entityName: "User")
     
+    var currentUser: User? {
+        return User(username: "Eva")
+    }
+    
     var users: [User] {
         let moc = Stack.sharedStack.managedObjectContext
         do {

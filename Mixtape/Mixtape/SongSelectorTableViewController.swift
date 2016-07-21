@@ -9,14 +9,19 @@
 import UIKit
 import CoreData
 
-class SongSelectorTableViewController: UITableViewController {
+class SongSelectorTableViewController: UITableViewController, SongSearchDelegate {
     
     var fetchedResultsController: NSFetchedResultsController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     
     var image = UIImage?()
     
@@ -40,9 +45,10 @@ class SongSelectorTableViewController: UITableViewController {
                 cell.updateWithSong(song)
             }
         })
+        cell.delegate = self
         
-//        cell.textLabel?.text = song.title
-//        cell.detailTextLabel?.text = song.artist
+        //        cell.textLabel?.text = song.title
+        //        cell.detailTextLabel?.text = song.artist
         
         return cell
     }
@@ -64,6 +70,15 @@ class SongSelectorTableViewController: UITableViewController {
         }
     }
     
+    func songSelected(cell: SongSearchResultsTableViewCell) {
+        if let indexPath = tableView.indexPathForCell(cell), user = UserController.sharedController.currentUser {
+            let song = songs[indexPath.row]
+            SongController.sharedController.postSong(song.artist, title: song.title, user: user, image: song.image ?? NSData(), trackID: song.trackID) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+    
     // MARK: - Navigation
     
     //     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -74,7 +89,20 @@ class SongSelectorTableViewController: UITableViewController {
     //
     //            }
     //        }
-    //    
+    //
     //    }
     
 }
+
+/* if let image = albumArtImage.image,
+ title = songTitleLabel.text,
+ artist = songArtistLabel.text,
+ user = UserController.sharedController.currentUser {
+ SongController.sharedController.postSong(artist, title: title, user: user, image: image, trackID: trackID) {
+ let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+ let viewController = storyBoard.instantiateViewControllerWithIdentifier("PlaylistViewController")
+ self.presentViewController(viewController, animated: true, completion: nil)
+ 
+ 
+ }
+ }*/

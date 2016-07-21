@@ -11,7 +11,11 @@ import CoreData
 
 class SongController {
     
+    static let sharedController = SongController()
+    
     let cloudKitManager: CloudKitManager
+    
+    var isSyncing: Bool = false
     
     var songs = [Song]()
     
@@ -75,15 +79,13 @@ class SongController {
     }
     
     
-    func postSong(artist: String, title: String, user: User, image: UIImage, trackID: String, completion: (() -> Void)?) {
-        guard let data = UIImageJPEGRepresentation(image, 0.8) else {
-            if let completion = completion {
-                completion()
-            }
-            return
-        }
-        let song = Song(title: title, artist: artist, image: data, trackID: trackID, user: user)
+    func postSong(artist: String, title: String, user: User, image: NSData, trackID: String, completion: (() -> Void)?) {
+        let song = Song(title: title, artist: artist, image: image, trackID: trackID, user: user)
         saveContext()
+        
+        if let completion = completion {
+            completion()
+        }
         
         if let songRecord = song.cloudKitRecord {
             cloudKitManager.saveRecord(songRecord, completion: { (record, error) in
@@ -107,6 +109,121 @@ class SongController {
         }
     }
     
+    // MARK: - Syncing
+    
+    func syncedRecords(type: String) -> [CloudKitManagedObject] {
+        
+        let fetchRequest = NSFetchRequest(entityName: type)
+        let predicate = NSPredicate(format: "recordIDData != nil")
+        
+        fetchRequest.predicate = predicate
+        
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [CloudKitManagedObject] ?? []
+        
+        return results
+    }
+    
+    func unsyncedRecords(type: String) -> [CloudKitManagedObject] {
+        
+        let fetchRequest = NSFetchRequest(entityName: type)
+        let predicate = NSPredicate(format: "recordIDData == nil")
+        
+        fetchRequest.predicate = predicate
+        
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [CloudKitManagedObject] ?? []
+        
+        return results
+    }
+    
+    func performFullSync(completion: (() -> Void)? = nil) {
+        
+        if isSyncing {
+            if let completion = completion {
+                completion()
+            }
+            
+        } else {
+            isSyncing = true
+            
+            pushChangesToCloudKit { (success) in
+                
+                self.fetchNewRecords(Song.kType) {
+                    
+                    self.fetchNewRecords(Playlist.kType, completion: {
+                        
+                        self.isSyncing = false
+                        
+                        if let completion = completion {
+                            
+                            completion()
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    func fetchNewRecords(type: String, completion: (() -> Void)?) {
+        
+        let referencesToExclude = syncedRecords(type).flatMap({ $0.cloudKitReference })
+        var predicate = NSPredicate(format: "NOT(recordID IN %@)", argumentArray: [referencesToExclude])
+        
+        if referencesToExclude.isEmpty {
+            predicate = NSPredicate(value: true)
+        }
+        
+        cloudKitManager.fetchRecordsWithType(type, predicate: predicate, recordFetchedBlock: { (record) in
+            
+            switch type {
+                
+            case Song.kType:
+                let _ = Song(record: record)
+                
+            case Playlist.kType:
+                let _ = Playlist(record: record)
+                
+            default:
+                return
+            }
+            
+            self.saveContext()
+            
+        }) { (records, error) in
+            
+            if error != nil {
+                print("error: \(error?.localizedDescription)")
+            }
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
+    
+    func pushChangesToCloudKit(completion: ((success: Bool, error: NSError?) -> Void)?) {
+        
+        let unsavedManagedObjects = unsyncedRecords(Song.kType) + unsyncedRecords(Playlist.kType)
+        let unsavedRecords = unsavedManagedObjects.flatMap({ $0.cloudKitRecord })
+        
+        cloudKitManager.saveRecords(unsavedRecords, perRecordCompletion: { (record, error) in
+            
+            guard let record = record else { return }
+            
+            if let matchingRecord = unsavedManagedObjects.filter({ $0.recordName == record.recordID.recordName }).first {
+                
+                matchingRecord.update(record)
+            }
+            
+        }) { (records, error) in
+            
+            if let completion = completion {
+                
+                let success = records != nil
+                completion(success: success, error: error)
+            }
+        }
+    }
     
     // MARK: - Subscriptions
     

@@ -19,10 +19,6 @@ class User: SyncableObject, SearchableRecord {
     
     private let kUsername = "username"
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
-    }
-    
     convenience init(username: String, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext){
         
         guard let entity = NSEntityDescription.entityForName(User.kType, inManagedObjectContext: context) else { fatalError() }
@@ -32,7 +28,7 @@ class User: SyncableObject, SearchableRecord {
         
     }
     
-    init?(dictionary:[String:AnyObject]) {
+    convenience init?(dictionary:[String:AnyObject]) {
         self.init()
         guard let username = dictionary[kUsername] as? String else {
             return nil }

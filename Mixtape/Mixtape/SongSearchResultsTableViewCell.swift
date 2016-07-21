@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import CoreData
+import CloudKit
 
 class SongSearchResultsTableViewCell: UITableViewCell {
-    
 
+    var delegate: SongSearchDelegate?
+    
+    var trackID = String()
+    
     @IBOutlet weak var albumArtImage: UIImageView!
-   
+    
     @IBOutlet weak var songTitleLabel: UILabel!
     
     @IBOutlet weak var songArtistLabel: UILabel!
     
     @IBAction func postSongButtonTapped(sender: AnyObject) {
-              
+       delegate?.songSelected(self)
     }
     
     func updateWithSong(song: Song) {
@@ -30,4 +35,13 @@ class SongSearchResultsTableViewCell: UITableViewCell {
             self.albumArtImage.image = image
         }
     }
+    
+    func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        
+    }
+}
+
+protocol SongSearchDelegate: class {
+    func songSelected(cell: SongSearchResultsTableViewCell)
+    
 }

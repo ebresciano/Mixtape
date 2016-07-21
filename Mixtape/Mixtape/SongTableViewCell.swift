@@ -9,7 +9,7 @@
 import UIKit
 
 class SongTableViewCell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,10 +30,14 @@ class SongTableViewCell: UITableViewCell {
     }
     
     func updateWithSong(song: Song) {
-        trackNameLabel.text = Song.kTrackName
-        artistNameLabel.text = Song.kArtistName 
-        //albumArt.image = Song.kImage
+        trackNameLabel.text = song.title
+        artistNameLabel.text = song.artist
+        albumArt.image = UIImage()
         
+        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
+            self.albumArt.image = image
+
+        }
     }
 
 
