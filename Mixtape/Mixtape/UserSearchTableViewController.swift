@@ -26,7 +26,6 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
         return resultsArray.count
     }
 
-
     // MARK: - Search Controller
     
     func setUpSearchController() {

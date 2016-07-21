@@ -18,13 +18,11 @@ class SongSelectorTableViewController: UITableViewController {
         
     }
     
+    var image = UIImage?()
+    
     var songs = [Song]()
     
     @IBOutlet weak var songSearchBar: UISearchBar!
-    
-    @IBAction func addToPlaylistButtonTapped(sender: AnyObject) {
-        
-    }
     
     
     // MARK: - Table view data source
@@ -33,11 +31,18 @@ class SongSelectorTableViewController: UITableViewController {
         return songs.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("songResultsCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("songResultsCell", forIndexPath: indexPath) as? SongSearchResultsTableViewCell ?? SongSearchResultsTableViewCell()
         let song = songs[indexPath.row]
         
-        cell.textLabel?.text = song.title
-        cell.detailTextLabel?.text = song.artist
+        SongController.getAlbumArtForSong(song, completion: { (songImage) in
+            if songImage != nil {
+                print("There is artwork for this song")
+                cell.updateWithSong(song)
+            }
+        })
+        
+//        cell.textLabel?.text = song.title
+//        cell.detailTextLabel?.text = song.artist
         
         return cell
     }
@@ -45,7 +50,6 @@ class SongSelectorTableViewController: UITableViewController {
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         songSearchBar.resignFirstResponder()
     }
-    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
@@ -62,17 +66,15 @@ class SongSelectorTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "songSelectorToPlaylist" {
-//            if let  pvc = segue.destinationViewController as? PlaylistViewController,
-//                let indexPath = self.tableView.indexPathForSelectedRow,
-//            let song = fetchedResultsController?.objectAtIndexPath(indexPath) as? Song {
-//                
-//                PlaylistViewController.song = song
-//            
-//            }
-//        }
-    
-    
+    //     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        if segue.identifier == "songSelectorToPlaylist" {
+    //            if let  pvc = segue.destinationViewController as? PlaylistViewController,
+    //                let indexPath = self.tableView.indexPathForSelectedRow,
+    //            let song = fetchedResultsController?.objectAtIndexPath(indexPath) as? Song {
+    //
+    //            }
+    //        }
+    //    
+    //    }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0743FB1D3FEC0C008E300E /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0743FA1D3FEC0C008E300E /* ImageController.swift */; };
 		CC636B0F1D36FC20003B4A18 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */; };
 		CC636B111D37043F003B4A18 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B101D37043F003B4A18 /* PlaylistViewController.swift */; };
 		CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593201D306A0E000C6906 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 		CCB593841D344B56000C6906 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593831D344B56000C6906 /* PlaylistController.swift */; };
 		CCB593861D344D9D000C6906 /* CloudKitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */; };
 		CCB593881D344DD7000C6906 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593871D344DD7000C6906 /* CloudKitManager.swift */; };
+		CCCB02651D40304300B68678 /* SongSearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */; };
 		CCF9C1861D359AC3002E3E42 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */; };
 		CCF9C1881D35B293002E3E42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */; };
 		CCF9C18A1D35B8C9002E3E42 /* UserSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */; };
@@ -38,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC0743FA1D3FEC0C008E300E /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		CC636B101D37043F003B4A18 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		CCB5931D1D306A0E000C6906 /* Mixtape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +59,7 @@
 		CCB593831D344B56000C6906 /* PlaylistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
 		CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManagedObject.swift; sourceTree = "<group>"; };
 		CCB593871D344DD7000C6906 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC0743FC1D3FF5C9008E300E /* VIEW */ = {
+			isa = PBXGroup;
+			children = (
+				CCB593241D306A0E000C6906 /* Main.storyboard */,
+				CCB593271D306A0E000C6906 /* Assets.xcassets */,
+				CCB593291D306A0E000C6906 /* LaunchScreen.storyboard */,
+				CCB5932C1D306A0E000C6906 /* Info.plist */,
+			);
+			name = VIEW;
+			sourceTree = "<group>";
+		};
 		CCB593141D306A0E000C6906 = {
 			isa = PBXGroup;
 			children = (
@@ -110,10 +125,7 @@
 				CCB5936D1D344140000C6906 /* MODEL */,
 				CCB593601D3437D4000C6906 /* MODEL CONTROLLERS */,
 				CCB5935F1D3437C6000C6906 /* VIEW CONTROLLERS */,
-				CCB593241D306A0E000C6906 /* Main.storyboard */,
-				CCB593271D306A0E000C6906 /* Assets.xcassets */,
-				CCB593291D306A0E000C6906 /* LaunchScreen.storyboard */,
-				CCB5932C1D306A0E000C6906 /* Info.plist */,
+				CC0743FC1D3FF5C9008E300E /* VIEW */,
 			);
 			path = Mixtape;
 			sourceTree = "<group>";
@@ -126,6 +138,7 @@
 				CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */,
 				CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */,
 				CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */,
+				CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */,
 				CCF9C18D1D35B972002E3E42 /* SongSelectorTableViewController.swift */,
 			);
 			name = "VIEW CONTROLLERS";
@@ -135,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				CCB5935D1D3436FE000C6906 /* NetworkController.swift */,
+				CC0743FA1D3FEC0C008E300E /* ImageController.swift */,
 				CCF9C1CA1D36B653002E3E42 /* SongController.swift */,
 				CCB593811D344B2C000C6906 /* UserController.swift */,
 				CCB593831D344B56000C6906 /* PlaylistController.swift */,
@@ -263,6 +277,8 @@
 				CCB5936F1D344462000C6906 /* Stack.swift in Sources */,
 				CCB593881D344DD7000C6906 /* CloudKitManager.swift in Sources */,
 				CCF9C1BD1D36B24C002E3E42 /* SyncableObject+CoreDataProperties.swift in Sources */,
+				CCCB02651D40304300B68678 /* SongSearchResultsTableViewCell.swift in Sources */,
+				CC0743FB1D3FEC0C008E300E /* ImageController.swift in Sources */,
 				CCF9C1CB1D36B653002E3E42 /* SongController.swift in Sources */,
 				CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */,
 				CCF9C1B51D36B1F0002E3E42 /* Playlist.swift in Sources */,

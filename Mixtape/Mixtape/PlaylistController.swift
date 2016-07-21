@@ -24,17 +24,17 @@ class PlaylistController {
             print("Very very sorry, could not save")
         }
     }
-    
-    func addSongToPlaylist(song: Song, title: String, playlist: Playlist, completion: ((success: Bool) -> Void)?) {
-      _ = Song(title: title)
-        saveContext()
-
-        if let completion = completion {
-            completion(success: true)
-        }
+//    
+//    func addSongToPlaylist(song: Song, title: String, playlist: Playlist, completion: ((success: Bool) -> Void)?) {
+//      _ = Song(title: title)
+//        saveContext()
+//
+//        if let completion = completion {
+//            completion(success: true)
+//        }
 
         
-        }
+        
         
     
 

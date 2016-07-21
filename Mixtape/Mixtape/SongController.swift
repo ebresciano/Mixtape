@@ -6,7 +6,8 @@
 //  Copyright © 2016 Eva Bresciano. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 class SongController {
     
@@ -14,20 +15,24 @@ class SongController {
     
     var songs = [Song]()
     
-    static let baseURL = (string:"https://itunes.apple.com/search")
+    init() {
+        
+        self.cloudKitManager = CloudKitManager()
+        
+        subscribeToNewSongPosts { (success, error) in
+            if success {
+                print("successfully subscribed")
+            }
+        }
+    }
+    
+    static let baseURLString = "https://itunes.apple.com/search"
     
     static func searchSongsByTitle(searchTerm: String, completion: (songs : [Song]) -> Void) {
         
-        let url = NSURL(string: baseURL)
-        // TODO: Handle spaces in search term
         let urlParameters = ["entity": "musicTrack", "term": searchTerm]
         
-        guard let unwrappedURL = url else {
-            completion(songs: [])
-            return
-        }
-        
-        NetworkController.performRequestForURL(unwrappedURL, httpMethod: .Get, urlParameters: urlParameters) { (data, error) in
+        NetworkController.performRequestForURL(baseURLString, httpMethod: .Get, urlParameters: urlParameters) { (data, error) in
             guard let data = data,
                 let jsonDictionary = (try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String:AnyObject]),
                 let songDictionaries = jsonDictionary?["results"] as? [[String: AnyObject]] else {
@@ -36,25 +41,72 @@ class SongController {
                     completion(songs: [])
                     return
             }
-        
-           let songs = songDictionaries.flatMap({Song(dictionary: $0, timestamp: NSDate())})
+            
+            let songs = songDictionaries.flatMap({Song(dictionary: $0, timestamp: NSDate())})
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completion(songs: songs)
             })
         }
+        
     }
     
-    init() {
-        
-        self.cloudKitManager = CloudKitManager()
-        
-        subscribeToNewSongPosts { (success, error) in
-            if success {
-                print("successfully subscribed to new post")
+    static func getAlbumArtForSong(song: Song, completion: ((songImage: UIImage?) -> Void)?) {
+        guard let artUrlString = song.artworkURLString else {
+            if let completion = completion {
+                completion(songImage: nil)
             }
+            return
+        }
+        
+        ImageController.getAlbumArt(artUrlString) { (image) in
+            guard let image = image else {
+                if let completion = completion {
+                    completion(songImage: nil)
+                }
+                return
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let completion = completion {
+                    completion(songImage: image)
+                }
+            })
         }
     }
-
+    
+    
+    func postSong(artist: String, title: String, user: User, image: UIImage, trackID: String, completion: (() -> Void)?) {
+        guard let data = UIImageJPEGRepresentation(image, 0.8) else {
+            if let completion = completion {
+                completion()
+            }
+            return
+        }
+        let song = Song(title: title, artist: artist, image: data, trackID: trackID, user: user)
+        saveContext()
+        
+        if let songRecord = song.cloudKitRecord {
+            cloudKitManager.saveRecord(songRecord, completion: { (record, error) in
+                if let record = record {
+                    song.update(record)
+                    self.addSubscriptionToSongPost(song, alertBody: "", completion: { (success, error) in
+                        if let error = error {
+                            print("could not follow: \(error.localizedDescription)")
+                        }
+                    })
+                }
+            })
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try Stack.sharedStack.managedObjectContext.save()
+        } catch {
+            print("Very very sorry, could not save")
+        }
+    }
+    
     
     // MARK: - Subscriptions
     
@@ -107,6 +159,7 @@ class SongController {
                         completion(success: success, isSubscribed: false, error: error)
                     }
                 })
+                
             } else {
                 self.addSubscriptionToSongPost(song, alertBody: "Someone you follow posted a song!", completion: { (success, error) in
                     if let completion = completion {
@@ -116,5 +169,5 @@ class SongController {
             }
         }
     }
-
+    
 }

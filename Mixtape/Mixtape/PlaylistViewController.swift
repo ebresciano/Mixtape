@@ -17,7 +17,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        }
+    }
     
     @IBOutlet weak var playlistTableView: UITableView!
     
@@ -28,10 +28,9 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       guard let cell = tableView.dequeueReusableCellWithIdentifier("songCell", forIndexPath: indexPath) as? SongTableViewCell,
-        let song = songs?[indexPath.row] else {
-            return UITableViewCell() }
-        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as? SongTableViewCell,
+            let song = songs?[indexPath.row] else {
+                return UITableViewCell() }
         cell.updateWithSong(song)
         return cell
     }

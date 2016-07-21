@@ -18,9 +18,9 @@ class NetworkController {
         case Delete = "DELETE"
     }
     
-    static func performRequestForURL(url: NSURL, httpMethod: HTTPMethod, urlParameters: [String: String]? = nil, body: NSData? = nil, completion: ((data: NSData?, error: NSError?) -> Void)? ) {
+    static func performRequestForURL(urlString: String, httpMethod: HTTPMethod, urlParameters: [String: String]? = nil, body: NSData? = nil, completion: ((data: NSData?, error: NSError?) -> Void)? ) {
         
-        let requestURL = urlFromURLParameters(url, urlParameters: urlParameters)
+        guard let requestURL = urlFromURLParameters(urlString, urlParameters: urlParameters) else { completion!(data: nil, error: nil); return }
         let request = NSMutableURLRequest(URL: requestURL)
         request.HTTPMethod = httpMethod.rawValue
         request.HTTPBody = body
@@ -35,14 +35,19 @@ class NetworkController {
         dataTask.resume()
     }
     
-    static func urlFromURLParameters(url: NSURL, urlParameters: [String: String]?) -> NSURL {
-        let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)
-        components?.queryItems = urlParameters?.flatMap({NSURLQueryItem(name: $0.0, value: $0.1)})
-        
-        if let url = components?.URL {
-            return url
+    static func urlFromURLParameters(urlString: String, urlParameters: [String: String]?) -> NSURL? {
+       
+        if let components = NSURLComponents(string: urlString) {
+            components.queryItems = urlParameters?.flatMap({NSURLQueryItem(name: $0.0, value: $0.1)})
+            
+            if let url = components.URL {
+                return url
+            } else {
+                fatalError("URL optional is nil")
+            }
         } else {
-            fatalError("URL optional is nil")
+            print("Something went wrong when creating components")
+            return nil
         }
     }
 }

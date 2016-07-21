@@ -9,16 +9,25 @@
 import UIKit
 
 class SongSearchResultsTableViewCell: UITableViewCell {
+    
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var albumArtImage: UIImageView!
+   
+    @IBOutlet weak var songTitleLabel: UILabel!
+    
+    @IBOutlet weak var songArtistLabel: UILabel!
+    
+    @IBAction func postSongButtonTapped(sender: AnyObject) {
+              
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func updateWithSong(song: Song) {
+        songTitleLabel.text = song.title
+        songArtistLabel.text = song.artist
+        albumArtImage.image = UIImage(named: "MixtapeLogo")
+        
+        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
+            self.albumArtImage.image = image
+        }
     }
-
 }
