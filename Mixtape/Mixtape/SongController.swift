@@ -78,7 +78,6 @@ class SongController {
         }
     }
     
-    
     func postSong(artist: String, title: String, user: User, image: NSData, trackID: String, completion: (() -> Void)?) {
         let song = Song(title: title, artist: artist, image: image, trackID: trackID, user: user)
         saveContext()

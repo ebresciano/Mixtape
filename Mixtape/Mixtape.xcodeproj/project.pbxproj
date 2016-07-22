@@ -20,7 +20,6 @@
 		CCB5935E1D3436FE000C6906 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5935D1D3436FE000C6906 /* NetworkController.swift */; };
 		CCB5936F1D344462000C6906 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB5936E1D344462000C6906 /* Stack.swift */; };
 		CCB593821D344B2C000C6906 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593811D344B2C000C6906 /* UserController.swift */; };
-		CCB593841D344B56000C6906 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593831D344B56000C6906 /* PlaylistController.swift */; };
 		CCB593861D344D9D000C6906 /* CloudKitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */; };
 		CCB593881D344DD7000C6906 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593871D344DD7000C6906 /* CloudKitManager.swift */; };
 		CCCB02651D40304300B68678 /* SongSearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */; };
@@ -56,7 +55,6 @@
 		CCB5935D1D3436FE000C6906 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		CCB5936E1D344462000C6906 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		CCB593811D344B2C000C6906 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		CCB593831D344B56000C6906 /* PlaylistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
 		CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManagedObject.swift; sourceTree = "<group>"; };
 		CCB593871D344DD7000C6906 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchResultsTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				CC0743FA1D3FEC0C008E300E /* ImageController.swift */,
 				CCF9C1CA1D36B653002E3E42 /* SongController.swift */,
 				CCB593811D344B2C000C6906 /* UserController.swift */,
-				CCB593831D344B56000C6906 /* PlaylistController.swift */,
 				CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */,
 			);
 			name = "MODEL CONTROLLERS";
@@ -287,7 +284,6 @@
 				CC636B111D37043F003B4A18 /* PlaylistViewController.swift in Sources */,
 				CCF9C1BF1D36B24C002E3E42 /* User+CoreDataProperties.swift in Sources */,
 				CCB5935C1D3413E3000C6906 /* CoreData.xcdatamodeld in Sources */,
-				CCB593841D344B56000C6906 /* PlaylistController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
