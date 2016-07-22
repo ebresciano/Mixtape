@@ -78,8 +78,22 @@ class SongController {
         }
     }
     
-    func postSong(artist: String, title: String, user: User, image: NSData, trackID: String, completion: (() -> Void)?) {
-        let song = Song(title: title, artist: artist, image: image, trackID: trackID, user: user)
+    // TODO: Add create playlist func
+    // This is basically going to call the playlist initializer and save the managed object context as well as save it to CloudKit
+    
+    func createPlaylist(user: User, songs: [Song?], completion: ((playlist: Playlist) -> Void)?) {
+        let playlist = Playlist(user: user)
+        saveContext()
+        
+        if let completion = completion {
+            completion(playlist: playlist)
+        }
+        
+    }
+    
+    
+    func postSong(artist: String, title: String, playlist: Playlist, image: NSData, trackID: String, completion: (() -> Void)?) {
+        let song = Song(title: title, artist: artist, image: image, trackID: trackID, playlist: playlist)
         saveContext()
         
         if let completion = completion {

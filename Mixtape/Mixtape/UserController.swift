@@ -13,6 +13,9 @@ import CloudKit
 
 class UserController {
     
+    let songs = [Song?]()
+    
+    
     static let sharedController = UserController()
     
     let fetchRequest = NSFetchRequest(entityName: "User")
@@ -38,7 +41,13 @@ class UserController {
     }
     
     func createUser(username: String) {
-        _ = User(username: username)
+        // TODO: Call create playlist to be able to add a playlist to this user being created
+        let user = User(username: username, playlist: playlist)
+        let playlist = Playlist(user: user)
+        SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
+            
+        }
+
         saveContext()
     }
     

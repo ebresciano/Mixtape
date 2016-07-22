@@ -15,13 +15,14 @@ class Playlist: SyncableObject {
     static let kType = "Playlist"
     static let kUser = "User"
     
-    convenience init(playlist: Playlist, user: User, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience init(user: User, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         guard let entity = NSEntityDescription.entityForName(Playlist.kType, inManagedObjectContext: context) else { fatalError() }
         
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.user = user
         self.recordName = recordName
+        self.songs = nil
     }
     
     var recordType: String = Playlist.kType

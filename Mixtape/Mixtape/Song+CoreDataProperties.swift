@@ -2,7 +2,7 @@
 //  Song+CoreDataProperties.swift
 //  Mixtape
 //
-//  Created by Eva Marie Bresciano on 7/21/16.
+//  Created by Eva Marie Bresciano on 7/22/16.
 //  Copyright © 2016 Eva Bresciano. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,6 +19,6 @@ extension Song {
     @NSManaged var timestamp: NSDate
     @NSManaged var title: String
     @NSManaged var trackID: String
-    @NSManaged var user: User?
+    @NSManaged var playlist: Playlist?
 
 }

@@ -15,16 +15,16 @@ class User: SyncableObject, SearchableRecord {
     
     static let kType = "User"
     static let kUsername = "username"
-    var users: [User]?
     
     private let kUsername = "username"
     
-    convenience init(username: String, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext){
+    convenience init(username: String, playlist: Playlist? = nil, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext){
         
         guard let entity = NSEntityDescription.entityForName(User.kType, inManagedObjectContext: context) else { fatalError() }
         
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.username = username
+        self.playlist = playlist
         
     }
     

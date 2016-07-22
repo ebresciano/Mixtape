@@ -69,9 +69,9 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     }
     
     func songSelected(cell: SongSearchResultsTableViewCell) {
-        if let indexPath = tableView.indexPathForCell(cell), user = UserController.sharedController.currentUser {
+        if let indexPath = tableView.indexPathForCell(cell), user = UserController.sharedController.currentUser, playlist = user.playlist {
             let song = songs[indexPath.row]
-            SongController.sharedController.postSong(song.artist, title: song.title, user: user, image: song.image ?? NSData(), trackID: song.trackID) {
+            SongController.sharedController.postSong(song.artist, title: song.title, playlist: playlist, image: song.image ?? NSData(), trackID: song.trackID) {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

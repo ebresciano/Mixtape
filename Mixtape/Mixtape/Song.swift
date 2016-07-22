@@ -33,7 +33,7 @@ class Song: SyncableObject, CloudKitManagedObject {
     
     
     // Songs that are initialized from this init get added to the MOC that saves to the persistent store
-    convenience init(title: String, artist: String, image: NSData, trackID: String, user: User, timestamp: NSDate = NSDate(), context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience init(title: String, artist: String, image: NSData, trackID: String, playlist: Playlist, timestamp: NSDate = NSDate(), context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         guard let entity = NSEntityDescription.entityForName(Song.kType, inManagedObjectContext: context) else { fatalError() }
         
@@ -44,7 +44,7 @@ class Song: SyncableObject, CloudKitManagedObject {
         self.trackID = trackID
         self.timestamp = timestamp
         self.recordName = self.nameForManagedObject()
-        self.user = user 
+        self.playlist = playlist
     }
     
     // Songs that are initialized from this init get added to our scratch pad and DO NOT get saved to the persistent store

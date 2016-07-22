@@ -269,13 +269,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3t-W8-hDb">
-                                            <rect key="frame" x="254" y="7" width="66" height="30"/>
-                                            <state key="normal" title="Follow"/>
-                                            <connections>
-                                                <action selector="followButtonTapped:" destination="c0X-oX-Dw8" eventType="touchUpInside" id="ex7-XZ-X0Z"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -286,9 +279,6 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="followButton" destination="O3t-W8-hDb" id="Kc6-e3-t4I"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cgm-b1-ZSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
