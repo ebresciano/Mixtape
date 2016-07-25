@@ -13,21 +13,23 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     
     var fetchedResultsController: NSFetchedResultsController?
     
+    var image = UIImage?()
+    
+    var songs = [Song]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         songSearchBar.becomeFirstResponder()
     }
     
+    // MARK: - Actions
+    
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    
-    var image = UIImage?()
-    
-    var songs = [Song]()
+    // MARK: - Outlets
     
     @IBOutlet weak var songSearchBar: UISearchBar!
     
@@ -50,6 +52,8 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         
         return cell
     }
+    
+    // MARK: - SearchBar functions 
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         songSearchBar.resignFirstResponder()

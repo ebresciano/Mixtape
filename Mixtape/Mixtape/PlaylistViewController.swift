@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
 
 class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
@@ -18,6 +19,15 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func playButtonTapped(sender: AnyObject) {
+    }
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var playButton: UIBarButtonItem!
     
     @IBOutlet weak var playlistTableView: UITableView!
     

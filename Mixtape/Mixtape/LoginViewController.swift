@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     usernameTextField.hidden = true
     }
     
+    // Mark: - Outlets
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var accountButton: UIButton!
@@ -33,10 +35,13 @@ class LoginViewController: UIViewController {
             account = .new
             usernameTextField.hidden = false
             accountButton.setTitle("Need an account?", forState: .Normal)
+            loginButton.setTitle("Create account", forState: .Normal)
         } else {
             account = .existing
             usernameTextField.hidden = true
             accountButton.setTitle("Have an account", forState: .Normal)
+            loginButton.setTitle("Login", forState: .Normal)
+            
         }
     }
     
@@ -60,6 +65,8 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Actions 
     
     @IBAction func accountButtonTapped(sender: AnyObject) {
         updateLoginView()

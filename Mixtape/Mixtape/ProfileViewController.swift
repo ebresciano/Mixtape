@@ -15,8 +15,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
        }
+    // MARK: - Outlets
     
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    // MARK: - Actions 
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)

@@ -25,7 +25,6 @@ class User: SyncableObject, SearchableRecord {
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.username = username
         self.playlist = playlist
-        
     }
     
     convenience init?(dictionary:[String:AnyObject]) {
@@ -33,7 +32,6 @@ class User: SyncableObject, SearchableRecord {
         guard let username = dictionary[kUsername] as? String else {
             return nil }
         self.username = username
-        
     }
     
     @objc func matchesSearchTerm(searchTerm: String) -> Bool {
@@ -41,9 +39,7 @@ class User: SyncableObject, SearchableRecord {
         return matchingUserTerms?.count > 0
         
     }
-
     
-   
 }
 
 

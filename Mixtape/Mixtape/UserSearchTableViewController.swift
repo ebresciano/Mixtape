@@ -14,39 +14,25 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
     var resultsArray: [SearchableRecord] = []
     var users: [User]?
     
-    // MARK: - Outlets
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchController()
     }
     
-    enum OtherUser {
-    case following
-    case notFollowing
-    }
-    
-    var otherUser = OtherUser.notFollowing
-
-//    func upDateFollowButton() {
-//        if otherUser  == .following {
-//            otherUser = .notFollowing
-//            followButton.setTitle("Follow", forState: .Normal)
-//        } else {
-//            otherUser = .following
-//                followButton.setTitle("Unfollow", forState: .Normal)
-//            }
-//       }
-
-    @IBAction func followButtonTapped(sender: AnyObject) {
-    }
-   
     // MARK: - Table view data source
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(resultsArray.count)
         return resultsArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
+        if let user = resultsArray[indexPath.row] as? User {
+            cell.textLabel?.text = user.username
+        }
+        
+        return cell
     }
 
     // MARK: - Search Controller
@@ -70,16 +56,4 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
             resultsViewController.tableView.reloadData()
         }
     }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
-        if let user = resultsArray[indexPath.row] as? User {
-            cell.textLabel?.text = user.username
-            
-        }
-        
-        return cell
-        
-        }
-
 }

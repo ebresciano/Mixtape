@@ -13,7 +13,6 @@
 		CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593201D306A0E000C6906 /* AppDelegate.swift */; };
 		CCB593261D306A0E000C6906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB593241D306A0E000C6906 /* Main.storyboard */; };
 		CCB593281D306A0E000C6906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCB593271D306A0E000C6906 /* Assets.xcassets */; };
-		CCB5932B1D306A0E000C6906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB593291D306A0E000C6906 /* LaunchScreen.storyboard */; };
 		CCB593341D306A45000C6906 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB593331D306A45000C6906 /* CloudKit.framework */; };
 		CCB593361D306BAB000C6906 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593351D306BAB000C6906 /* LoginViewController.swift */; };
 		CCB5935C1D3413E3000C6906 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCB5935A1D3413E3000C6906 /* CoreData.xcdatamodeld */; };
@@ -23,6 +22,8 @@
 		CCB593861D344D9D000C6906 /* CloudKitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */; };
 		CCB593881D344DD7000C6906 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593871D344DD7000C6906 /* CloudKitManager.swift */; };
 		CCCB02651D40304300B68678 /* SongSearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */; };
+		CCE2CD811D46786F00B1FEF0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE2CD801D46786F00B1FEF0 /* MediaPlayer.framework */; };
+		CCE2CD831D467E1300B1FEF0 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE2CD821D467E1300B1FEF0 /* UserTableViewCell.swift */; };
 		CCF9C1861D359AC3002E3E42 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */; };
 		CCF9C1881D35B293002E3E42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */; };
 		CCF9C18A1D35B8C9002E3E42 /* UserSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */; };
@@ -46,7 +47,6 @@
 		CCB593201D306A0E000C6906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Mixtape/AppDelegate.swift; sourceTree = "<group>"; };
 		CCB593251D306A0E000C6906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCB593271D306A0E000C6906 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CCB5932A1D306A0E000C6906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCB5932C1D306A0E000C6906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCB593321D306A27000C6906 /* Mixtape.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Mixtape.entitlements; path = Mixtape/Mixtape.entitlements; sourceTree = "<group>"; };
 		CCB593331D306A45000C6906 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -58,6 +58,8 @@
 		CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManagedObject.swift; sourceTree = "<group>"; };
 		CCB593871D344DD7000C6906 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		CCE2CD801D46786F00B1FEF0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		CCE2CD821D467E1300B1FEF0 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE2CD811D46786F00B1FEF0 /* MediaPlayer.framework in Frameworks */,
 				CCB593341D306A45000C6906 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,7 +93,6 @@
 			children = (
 				CCB593241D306A0E000C6906 /* Main.storyboard */,
 				CCB593271D306A0E000C6906 /* Assets.xcassets */,
-				CCB593291D306A0E000C6906 /* LaunchScreen.storyboard */,
 				CCB5932C1D306A0E000C6906 /* Info.plist */,
 			);
 			name = VIEW;
@@ -99,6 +101,7 @@
 		CCB593141D306A0E000C6906 = {
 			isa = PBXGroup;
 			children = (
+				CCE2CD801D46786F00B1FEF0 /* MediaPlayer.framework */,
 				CCB5931F1D306A0E000C6906 /* Mixtape */,
 				CCB593321D306A27000C6906 /* Mixtape.entitlements */,
 				CCB593201D306A0E000C6906 /* AppDelegate.swift */,
@@ -132,9 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				CCB593351D306BAB000C6906 /* LoginViewController.swift */,
-				CC636B101D37043F003B4A18 /* PlaylistViewController.swift */,
 				CCF9C1851D359AC3002E3E42 /* SongTableViewCell.swift */,
+				CC636B101D37043F003B4A18 /* PlaylistViewController.swift */,
 				CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */,
+				CCE2CD821D467E1300B1FEF0 /* UserTableViewCell.swift */,
 				CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */,
 				CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */,
 				CCF9C18D1D35B972002E3E42 /* SongSelectorTableViewController.swift */,
@@ -246,7 +250,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCB5932B1D306A0E000C6906 /* LaunchScreen.storyboard in Resources */,
 				CCB593281D306A0E000C6906 /* Assets.xcassets in Resources */,
 				CCB593261D306A0E000C6906 /* Main.storyboard in Resources */,
 			);
@@ -263,6 +266,7 @@
 				CCF9C1C71D36B63F002E3E42 /* User.swift in Sources */,
 				CCF9C1861D359AC3002E3E42 /* SongTableViewCell.swift in Sources */,
 				CCF9C1881D35B293002E3E42 /* ProfileViewController.swift in Sources */,
+				CCE2CD831D467E1300B1FEF0 /* UserTableViewCell.swift in Sources */,
 				CCF9C1C11D36B24C002E3E42 /* Playlist+CoreDataProperties.swift in Sources */,
 				CCF9C18E1D35B972002E3E42 /* SongSelectorTableViewController.swift in Sources */,
 				CCB5935E1D3436FE000C6906 /* NetworkController.swift in Sources */,
@@ -296,14 +300,6 @@
 				CCB593251D306A0E000C6906 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CCB593291D306A0E000C6906 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CCB5932A1D306A0E000C6906 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -16,12 +16,15 @@ class SongSearchResultsTableViewCell: UITableViewCell {
     
     var trackID = String()
     
-   
+   // MARK: - Outlets
+    
     @IBOutlet weak var albumArtImage: UIImageView!
     
     @IBOutlet weak var songTitleLabel: UILabel!
     
     @IBOutlet weak var songArtistLabel: UILabel!
+    
+    // MARK: - Actions 
     
     @IBAction func postSongButtonTapped(sender: AnyObject) {
         delegate?.songSelected(self)

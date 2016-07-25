@@ -15,13 +15,12 @@ class UserController {
     
     let songs = [Song?]()
     
-    
     static let sharedController = UserController()
     
     let fetchRequest = NSFetchRequest(entityName: "User")
     
     var currentUser: User? {
-        return User(username: "Eva")
+        return User(username: "")
     }
     
     var users: [User] {
@@ -42,7 +41,7 @@ class UserController {
     
     func createUser(username: String) {
         // TODO: Call create playlist to be able to add a playlist to this user being created
-        let user = User(username: username, playlist: playlist)
+        let user = User(username: username)
         let playlist = Playlist(user: user)
         SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
             

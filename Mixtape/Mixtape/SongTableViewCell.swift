@@ -14,6 +14,8 @@ class SongTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    // MARK: - Outlets
 
     @IBOutlet weak var albumArt: UIImageView!
     
