@@ -23,6 +23,8 @@ class UserTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     @IBOutlet weak var followButton: UIButton!
       
     enum OtherUser {
@@ -40,8 +42,15 @@ class UserTableViewCell: UITableViewCell {
             otherUser = .following
             followButton.setTitle("Unfollow", forState: .Normal)
         }
+        
+        func updateWithUser(user: User) {
+            usernameLabel.text = user.username
+            
+        }
     }
     
+    
+        
     // MARK: - Actions
    
     @IBAction func followButtonTapped(sender: AnyObject) {

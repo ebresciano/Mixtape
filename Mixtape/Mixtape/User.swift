@@ -25,6 +25,7 @@ class User: SyncableObject, SearchableRecord {
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.username = username
         self.playlist = playlist
+        self.recordName = NSUUID().UUIDString
     }
     
     convenience init?(dictionary:[String:AnyObject]) {
@@ -39,6 +40,40 @@ class User: SyncableObject, SearchableRecord {
         return matchingUserTerms?.count > 0
         
     }
+    
+    var recordType: String = User.kType
+    
+    var cloudKitRecord: CKRecord? {
+        let recordID = CKRecordID(recordName: recordName)
+        let record = CKRecord(recordType: recordType, recordID: recordID)
+        record[User.kUsername] = username
+    
+        
+        return record
+    }
+    
+    convenience required init?(record: CKRecord, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+        guard let _ = record.creationDate,
+            let username = record[User.kUsername] as? String
+            else {
+                return nil
+        }
+        
+        guard let entity = NSEntityDescription.entityForName(User.kType, inManagedObjectContext: context)
+            else { fatalError("Error: CoreData failed to create entity from entity description. \(#function)") }
+        
+        self.init(entity: entity, insertIntoManagedObjectContext: context)
+        self.username = username
+        self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record.recordID)
+        self.recordName = record.recordID.recordName
+        
+    }
+    
+    func updateWithRecord(record: CKRecord) {
+        
+        self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record)
+    }
+
     
 }
 

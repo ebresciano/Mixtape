@@ -12,16 +12,33 @@ import CoreData
 import CloudKit
 
 class UserController {
-    
+
     let songs = [Song?]()
     
     static let sharedController = UserController()
     
+    private let cloudKitManager = CloudKitManager()
+    
     let fetchRequest = NSFetchRequest(entityName: "User")
     
-    var currentUser: User? {
-        return User(username: "")
-    }
+//    var currentUser: User? {
+//        var user: User?
+//        cloudKitManager.fetchLoggedInUserRecord { (record, error) in
+//            if let error = error {
+//                return
+//            } else {
+//                guard let record = record else {
+//                    return
+//                }
+//                // Retrieve user if the have an account in your app else have them create an account
+//                
+//                user = User(record: record)
+//        
+//                
+//            }
+//        }
+//        return user
+//    }
     
     var users: [User] {
         let moc = Stack.sharedStack.managedObjectContext
@@ -39,15 +56,27 @@ class UserController {
         }
     }
     
-    func createUser(username: String) {
-        // TODO: Call create playlist to be able to add a playlist to this user being created
-        let user = User(username: username)
-        let playlist = Playlist(user: user)
-        SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
-            
+    func fetchAllUsers(completion: ((users: [User]) -> Void)?) {
+        cloudKitManager.fetchRecordsWithType("User", recordFetchedBlock: nil) { (records, error) in
+            if let records = records {
+                let users = records.flatMap({ User(record: $0 )})
+                if let completion = completion {
+                    completion(users: users)
+                }
+            }
         }
+    }
+    
+    func createUser(username: String) {
+        let user = User(username: username)
+        SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
+            user.playlist = playlist
+            self.saveContext()
+        }
+        
+        cloudKitManager.saveRecord(user.cloudKitRecord!) { (record, error) in
 
-        saveContext()
+        }
     }
     
     func saveContext() {

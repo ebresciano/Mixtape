@@ -17,6 +17,9 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchController()
+        UserController.sharedController.fetchAllUsers { (users) in
+            self.users = users
+        }
     }
     
     // MARK: - Table view data source
@@ -27,10 +30,9 @@ class UserSearchTableViewController: UITableViewController, UISearchResultsUpdat
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath)
-        if let user = resultsArray[indexPath.row] as? User {
-            cell.textLabel?.text = user.username
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("userSearchResultsCell", forIndexPath: indexPath) as? UserTableViewCell ?? UserTableViewCell()
+        let user = users?[indexPath.row]
+        
         
         return cell
     }

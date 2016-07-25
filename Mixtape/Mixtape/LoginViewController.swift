@@ -12,7 +12,9 @@ import UIKit
 class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
-    usernameTextField.hidden = true
+        super.viewDidLoad()
+        
+        usernameTextField.hidden = true
     }
     
     // Mark: - Outlets
@@ -34,12 +36,12 @@ class LoginViewController: UIViewController {
         if account == .existing  {
             account = .new
             usernameTextField.hidden = false
-            accountButton.setTitle("Need an account?", forState: .Normal)
+            accountButton.setTitle("Have an account?", forState: .Normal)
             loginButton.setTitle("Create account", forState: .Normal)
         } else {
             account = .existing
             usernameTextField.hidden = true
-            accountButton.setTitle("Have an account", forState: .Normal)
+            accountButton.setTitle("Need an account", forState: .Normal)
             loginButton.setTitle("Login", forState: .Normal)
             
         }
@@ -47,26 +49,25 @@ class LoginViewController: UIViewController {
     
     func checkForAccount() {
         if account == .existing {
-            let allUsers = UserController.sharedController.users
-            for user in allUsers {
-                if user.username == usernameTextField.text {
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyBoard.instantiateViewControllerWithIdentifier("PlaylistViewController")
-                    self.presentViewController(viewController, animated: true, completion: nil)
-                }
+            
+            if let currentUser = UserController.sharedController.users.first {
+                performSegueWithIdentifier("toPlaylist", sender: self)
+            } else {
+                let alertController = UIAlertController(title: "Create an account", message: "Click on need an account!", preferredStyle: .Alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                    
+                    presentViewController(alertController, animated: true, completion: nil)
+                print("This person does not have an account")
             }
         } else {
-            if account == .new {
-                if let username = usernameTextField.text where username.characters.count > 0 {
-                    UserController.sharedController.createUser(username)
-                    
-                    
-                }
+            if let username = usernameTextField.text where username.characters.count > 0 {
+                UserController.sharedController.createUser(username)
+                performSegueWithIdentifier("toPlaylist", sender: self)
             }
         }
     }
     
-    // MARK: - Actions 
+    // MARK: - Actions
     
     @IBAction func accountButtonTapped(sender: AnyObject) {
         updateLoginView()
