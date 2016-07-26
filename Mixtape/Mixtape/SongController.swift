@@ -19,6 +19,8 @@ class SongController {
     
     var songs: [Song] {
         let request = NSFetchRequest(entityName: "Song")
+        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        request.sortDescriptors = [sortDescriptor]
         let moc = Stack.sharedStack.managedObjectContext
         do {
             let songs = try moc.executeFetchRequest(request) as! [Song]

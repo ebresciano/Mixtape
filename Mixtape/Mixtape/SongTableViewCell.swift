@@ -36,6 +36,10 @@ class SongTableViewCell: UITableViewCell {
         artistNameLabel.text = song.artist
         albumArt.image = UIImage()
         
+        if let image = UIImage(data: song.image) {
+            albumArt.image = image
+        }
+        
 //        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
 //            self.albumArt.image = image
 //

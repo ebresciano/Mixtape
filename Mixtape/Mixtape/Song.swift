@@ -62,7 +62,7 @@ class Song: SyncableObject, CloudKitManagedObject {
         self.init(entity: entity, insertIntoManagedObjectContext: scratchPadContext)
         self.timestamp = timestamp
         self.title = title
-        self.artworkURLString = imageString
+        self.artworkURLString = imageString.stringByReplacingOccurrencesOfString("100x100", withString: "225x225")
         self.artist = artist
         self.trackID = "\(trackID)"
     }
