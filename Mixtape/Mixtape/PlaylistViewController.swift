@@ -14,11 +14,22 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     
     var fetchedResultsController: NSFetchedResultsController?
     
-    let songs = [Song]?()
+    @IBOutlet weak var tableView: UITableView!
+    var songs: [Song] {
+        return SongController.sharedController.songs
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     
     // MARK: - Actions
     
@@ -34,13 +45,12 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs?.count ?? 0
+        return songs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as? SongTableViewCell,
-            let song = songs?[indexPath.row] else {
-                return UITableViewCell() }
+        let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as? SongTableViewCell ?? SongTableViewCell()
+        let song = songs[indexPath.row]
         cell.updateWithSong(song)
         return cell
     }

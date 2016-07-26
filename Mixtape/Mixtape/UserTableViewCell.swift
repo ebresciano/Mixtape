@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class UserTableViewCell: UITableViewCell {
 
@@ -42,15 +43,13 @@ class UserTableViewCell: UITableViewCell {
             otherUser = .following
             followButton.setTitle("Unfollow", forState: .Normal)
         }
-        
-        func updateWithUser(user: User) {
-            usernameLabel.text = user.username
-            
-        }
     }
     
-    
+    func updateWithUser(user: User) {
+        usernameLabel.text = user.username
         
+    }
+    
     // MARK: - Actions
    
     @IBAction func followButtonTapped(sender: AnyObject) {

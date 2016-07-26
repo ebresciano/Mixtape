@@ -36,10 +36,10 @@ class SongTableViewCell: UITableViewCell {
         artistNameLabel.text = song.artist
         albumArt.image = UIImage()
         
-        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
-            self.albumArt.image = image
-
-        }
+//        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
+//            self.albumArt.image = image
+//
+//        }
     }
 
 

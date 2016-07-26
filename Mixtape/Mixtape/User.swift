@@ -36,8 +36,7 @@ class User: SyncableObject, SearchableRecord {
     }
     
     @objc func matchesSearchTerm(searchTerm: String) -> Bool {
-        let matchingUserTerms = users?.filter({ $0.matchesSearchTerm(searchTerm) })
-        return matchingUserTerms?.count > 0
+        return username.containsString(searchTerm) ?? false
         
     }
     

@@ -44,7 +44,8 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         let song = songs[indexPath.row]
         
         SongController.getAlbumArtForSong(song, completion: { (songImage) in
-            if songImage != nil {
+            if let songImage = songImage, imageData = UIImageJPEGRepresentation(songImage, 0.8) {
+                song.image = imageData
                 cell.updateWithSong(song)
             }
         })

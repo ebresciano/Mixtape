@@ -17,7 +17,18 @@ class SongController {
     
     var isSyncing: Bool = false
     
-    var songs = [Song]()
+    var songs: [Song] {
+        let request = NSFetchRequest(entityName: "Song")
+        let moc = Stack.sharedStack.managedObjectContext
+        do {
+            let songs = try moc.executeFetchRequest(request) as! [Song]
+            return songs
+        } catch
+            let error as NSError {
+                print(error.localizedDescription)
+                return []
+        }
+    }
     
     init() {
         
@@ -78,8 +89,6 @@ class SongController {
         }
     }
     
-    // TODO: Add create playlist func
-    // This is basically going to call the playlist initializer and save the managed object context as well as save it to CloudKit
     
     func createPlaylist(user: User, songs: [Song?], completion: ((playlist: Playlist) -> Void)?) {
         let playlist = Playlist(user: user)

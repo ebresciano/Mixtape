@@ -56,12 +56,14 @@ class UserController {
         }
     }
     
-    func fetchAllUsers(completion: ((users: [User]) -> Void)?) {
+    func fetchAllUsers(searchTerm: String, completion: ((users: [User]) -> Void)?) {
         cloudKitManager.fetchRecordsWithType("User", recordFetchedBlock: nil) { (records, error) in
             if let records = records {
                 let users = records.flatMap({ User(record: $0 )})
                 if let completion = completion {
-                    completion(users: users)
+                    let resultsArray = users.filter({$0.matchesSearchTerm(searchTerm)})
+                    
+                    completion(users: resultsArray)
                 }
             }
         }
@@ -86,6 +88,67 @@ class UserController {
             print("Very very sorry, could not save User")
         }
     }
+    
+//    func subscribeToNewSongPosts(completion: ((success: Bool, error: NSError?) -> Void)?) {
+//        let predicate = NSPredicate(value: true)
+//        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: "Users", contentAvailable: true, options: .FiresOnRecordCreation) { (subscription, error) in
+//            if let completion = completion {
+//                let success = subscription != nil
+//                completion(success: success, error: error)
+//            }
+//        }
+//    }
+//    
+//    func checkSubscriptionToSongPost(user: User, completion: ((subscribed: Bool) -> Void)?) {
+//        cloudKitManager.fetchSubscription(user.recordName) { (subscription, error) in
+//            if let completion = completion {
+//                let success = subscription != nil
+//                completion(subscribed: success)
+//            }
+//        }
+//    }
+//    
+//    func addSubscriptionToSongPost(user: User, alertBody: String?, completion: ((success: Bool, error: NSError?) -> Void)?) {
+//        guard let recordID = user.cloudKitRecordID else {
+//            fatalError("unable to create cloudKitRereference for subscription") }
+//        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
+//        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: user.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: [User.kType], options: .FiresOnRecordCreation) { (subscription, error) in
+//            if let completion = completion {
+//                let success = subscription != nil
+//                completion(success:success, error: error)
+//            }
+//        }
+//    }
+//    
+//    func removeSubscriptionToSongPosts(user: User, completion: ((success: Bool, error: NSError?) -> Void)?) {
+//        let subscriptionID = user.recordName
+//        cloudKitManager.unsubscribe(subscriptionID) { (subscriptionID, error) in
+//            if let completion = completion {
+//                let success = subscriptionID != nil
+//                completion(success: success, error: error)
+//            }
+//        }
+//    }
+//    
+//    func toggleSongPostsSubscription(user: User, completion: ((success: Bool, isSubscribed: Bool, error: NSError?) -> Void)?) {
+//        cloudKitManager.fetchSubscriptions { (subscriptions, error) in
+//            if subscriptions?.filter({$0.subscriptionID == user.recordName}).first != nil {
+//                self.removeSubscriptionToSongPosts(user, completion: { (success, error) in
+//                    if let completion = completion {
+//                        completion(success: success, isSubscribed: false, error: error)
+//                    }
+//                })
+//                
+//            } else {
+//                self.addSubscriptionToSongPost(user, alertBody: "AAAA!", completion: { (success, error) in
+//                    if let completion = completion {
+//                        completion(success: success, isSubscribed: true, error: error)
+//                    }
+//                })
+//            }
+//        }
+//    }
+
 }
 
 
