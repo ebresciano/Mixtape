@@ -45,7 +45,9 @@ class UserSearchTableViewController: UITableViewController {
             print(users.count)
             if users.count > 0 {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
+                    self.tableView.reloadData(
+                    
+                    )
                 })
 
             } else {
