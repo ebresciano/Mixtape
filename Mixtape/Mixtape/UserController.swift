@@ -21,24 +21,9 @@ class UserController {
     
     let fetchRequest = NSFetchRequest(entityName: "User")
     
-//    var currentUser: User? {
-//        var user: User?
-//        cloudKitManager.fetchLoggedInUserRecord { (record, error) in
-//            if let error = error {
-//                return
-//            } else {
-//                guard let record = record else {
-//                    return
-//                }
-//                // Retrieve user if the have an account in your app else have them create an account
-//                
-//                user = User(record: record)
-//        
-//                
-//            }
-//        }
-//        return user
-//    }
+    var currentUser: User? {
+        return users.first
+    }
     
     var users: [User] {
         let moc = Stack.sharedStack.managedObjectContext

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CC0743FB1D3FEC0C008E300E /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0743FA1D3FEC0C008E300E /* ImageController.swift */; };
 		CC34CA2E1D4927BC0081AC07 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34CA2D1D4927BC0081AC07 /* ProfileTableViewCell.swift */; };
+		CC34CA331D49696F0081AC07 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34CA2F1D49696F0081AC07 /* User+CoreDataProperties.swift */; };
+		CC34CA351D49696F0081AC07 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34CA311D49696F0081AC07 /* Song+CoreDataProperties.swift */; };
 		CC636B0F1D36FC20003B4A18 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */; };
 		CC636B111D37043F003B4A18 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B101D37043F003B4A18 /* PlaylistViewController.swift */; };
 		CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593201D306A0E000C6906 /* AppDelegate.swift */; };
@@ -31,9 +33,7 @@
 		CCF9C18E1D35B972002E3E42 /* SongSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C18D1D35B972002E3E42 /* SongSelectorTableViewController.swift */; };
 		CCF9C1B51D36B1F0002E3E42 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1B31D36B1F0002E3E42 /* Playlist.swift */; };
 		CCF9C1BD1D36B24C002E3E42 /* SyncableObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1B61D36B24C002E3E42 /* SyncableObject+CoreDataProperties.swift */; };
-		CCF9C1BF1D36B24C002E3E42 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1B81D36B24C002E3E42 /* User+CoreDataProperties.swift */; };
 		CCF9C1C11D36B24C002E3E42 /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1BA1D36B24C002E3E42 /* Playlist+CoreDataProperties.swift */; };
-		CCF9C1C21D36B24C002E3E42 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1BB1D36B24C002E3E42 /* Song+CoreDataProperties.swift */; };
 		CCF9C1C51D36B62D002E3E42 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1C41D36B62D002E3E42 /* Song.swift */; };
 		CCF9C1C71D36B63F002E3E42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1C61D36B63F002E3E42 /* User.swift */; };
 		CCF9C1C91D36B647002E3E42 /* SyncableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF9C1C81D36B647002E3E42 /* SyncableObject.swift */; };
@@ -43,6 +43,8 @@
 /* Begin PBXFileReference section */
 		CC0743FA1D3FEC0C008E300E /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		CC34CA2D1D4927BC0081AC07 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CC34CA2F1D49696F0081AC07 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CC34CA311D49696F0081AC07 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Song+CoreDataProperties.swift"; path = "../Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		CC636B101D37043F003B4A18 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		CCB5931D1D306A0E000C6906 /* Mixtape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,9 +70,7 @@
 		CCF9C18D1D35B972002E3E42 /* SongSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CCF9C1B31D36B1F0002E3E42 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		CCF9C1B61D36B24C002E3E42 /* SyncableObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncableObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CCF9C1B81D36B24C002E3E42 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CCF9C1BA1D36B24C002E3E42 /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CCF9C1BB1D36B24C002E3E42 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CCF9C1C41D36B62D002E3E42 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		CCF9C1C61D36B63F002E3E42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CCF9C1C81D36B647002E3E42 /* SyncableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncableObject.swift; sourceTree = "<group>"; };
@@ -177,9 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				CCF9C1B61D36B24C002E3E42 /* SyncableObject+CoreDataProperties.swift */,
-				CCF9C1B81D36B24C002E3E42 /* User+CoreDataProperties.swift */,
+				CC34CA2F1D49696F0081AC07 /* User+CoreDataProperties.swift */,
+				CC34CA311D49696F0081AC07 /* Song+CoreDataProperties.swift */,
 				CCF9C1BA1D36B24C002E3E42 /* Playlist+CoreDataProperties.swift */,
-				CCF9C1BB1D36B24C002E3E42 /* Song+CoreDataProperties.swift */,
 				CCB593851D344D9D000C6906 /* CloudKitManagedObject.swift */,
 				CCB593871D344DD7000C6906 /* CloudKitManager.swift */,
 			);
@@ -268,7 +268,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF9C1C21D36B24C002E3E42 /* Song+CoreDataProperties.swift in Sources */,
 				CCF9C1C71D36B63F002E3E42 /* User.swift in Sources */,
 				CCF9C1861D359AC3002E3E42 /* SongTableViewCell.swift in Sources */,
 				CC34CA2E1D4927BC0081AC07 /* ProfileTableViewCell.swift in Sources */,
@@ -278,6 +277,7 @@
 				CCF9C18E1D35B972002E3E42 /* SongSelectorTableViewController.swift in Sources */,
 				CCB5935E1D3436FE000C6906 /* NetworkController.swift in Sources */,
 				CCB593861D344D9D000C6906 /* CloudKitManagedObject.swift in Sources */,
+				CC34CA331D49696F0081AC07 /* User+CoreDataProperties.swift in Sources */,
 				CCB593821D344B2C000C6906 /* UserController.swift in Sources */,
 				CCF9C18A1D35B8C9002E3E42 /* UserSearchTableViewController.swift in Sources */,
 				CCB593361D306BAB000C6906 /* LoginViewController.swift in Sources */,
@@ -290,10 +290,10 @@
 				CCF9C1CB1D36B653002E3E42 /* SongController.swift in Sources */,
 				CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */,
 				CCF9C1B51D36B1F0002E3E42 /* Playlist.swift in Sources */,
+				CC34CA351D49696F0081AC07 /* Song+CoreDataProperties.swift in Sources */,
 				CCF9C1C51D36B62D002E3E42 /* Song.swift in Sources */,
 				CC636B0F1D36FC20003B4A18 /* SearchableRecord.swift in Sources */,
 				CC636B111D37043F003B4A18 /* PlaylistViewController.swift in Sources */,
-				CCF9C1BF1D36B24C002E3E42 /* User+CoreDataProperties.swift in Sources */,
 				CCB5935C1D3413E3000C6906 /* CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

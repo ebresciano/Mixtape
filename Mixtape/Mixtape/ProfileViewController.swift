@@ -7,20 +7,39 @@
 //
 
 import UIKit
+import CoreData
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
-    @IBOutlet weak var tableView: UITableView!
-
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+    
+    var fetchedResultsController: NSFetchedResultsController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        if let currentUser = UserController.sharedController.currentUser {
+            usernameLabel.text = currentUser.username
+        }
+        
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
+    
+    var songs: [Song] {
+        return SongController.sharedController.songs
+    }
+    
     // MARK: - Outlets
     
     @IBOutlet weak var usernameLabel: UILabel!
     
-    // MARK: - Actions 
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Actions
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -28,15 +47,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let songs = [Song]()
         return songs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath)
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as? ProfileTableViewCell ?? ProfileTableViewCell()
+        let song = songs[indexPath.row]
+        cell.updateProfileWithSong(song)
         return cell
     }
-    
-    
 }

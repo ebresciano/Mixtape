@@ -31,6 +31,8 @@ class Song: SyncableObject, CloudKitManagedObject {
     static let kTrack = "trackID"
     static let kUser = "user"
     
+    static let kPlaylist = "playlist"
+    
     
     // Songs that are initialized from this init get added to the MOC that saves to the persistent store
     convenience init(title: String, artist: String, image: NSData, trackID: String, playlist: Playlist, timestamp: NSDate = NSDate(), context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
@@ -62,7 +64,7 @@ class Song: SyncableObject, CloudKitManagedObject {
         self.init(entity: entity, insertIntoManagedObjectContext: scratchPadContext)
         self.timestamp = timestamp
         self.title = title
-        self.artworkURLString = imageString.stringByReplacingOccurrencesOfString("100x100", withString: "225x225")
+        self.artworkURLString = imageString.stringByReplacingOccurrencesOfString("100x100", withString: "300x300")
         self.artist = artist
         self.trackID = "\(trackID)"
     }
@@ -75,6 +77,12 @@ class Song: SyncableObject, CloudKitManagedObject {
         record[Song.kTimestamp] = timestamp
         record[Song.kTitle] = title
         record[Song.kArtist] = artist
+        
+        guard let playlist = playlist,
+            let playlistRecord = playlist.cloudKitRecord else { fatalError("Unfortunately a Song Playlist relationship does not exist") }
+
+        record[Song.kPlaylist] = CKReference(record: playlistRecord, action: .DeleteSelf)
+
         
         return record
     }

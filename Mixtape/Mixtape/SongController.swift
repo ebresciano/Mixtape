@@ -54,7 +54,7 @@ class SongController {
                 let jsonDictionary = (try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String:AnyObject]),
                 let songDictionaries = jsonDictionary?["results"] as? [[String: AnyObject]] else {
                     
-                    print("could not serialize json")
+                    print("could not serialize json. Come check the NetworkController in Song.swift file")
                     completion(songs: [])
                     return
             }

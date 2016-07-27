@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import CloudKit
 
-class Playlist: SyncableObject {
+class Playlist: SyncableObject, CloudKitManagedObject {
     
     static let kType = "Playlist"
     static let kUser = "User"
@@ -21,7 +21,7 @@ class Playlist: SyncableObject {
         
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.user = user
-        self.recordName = recordName
+        self.recordName = self.nameForManagedObject()
         self.songs = nil
     }
     
@@ -30,10 +30,15 @@ class Playlist: SyncableObject {
     var cloudKitRecord: CKRecord? {
         let recordID = CKRecordID(recordName: recordName)
         let record = CKRecord(recordType: recordType, recordID: recordID)
+        
+        guard let user = user,
+            let playlistRecord = user.cloudKitRecord else { fatalError("Unfortunately a User Playlist relationship does not exist") }
+        
+        record[Playlist.kUser] = CKReference(record: playlistRecord, action: .DeleteSelf)
         return record
     }
     
-    convenience init?(record: CKRecord, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience required init?(record: CKRecord, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         guard let entity = NSEntityDescription.entityForName("Playlist", inManagedObjectContext: context) else { fatalError("Error: Core Data failed to create entity from entity description.") }
         

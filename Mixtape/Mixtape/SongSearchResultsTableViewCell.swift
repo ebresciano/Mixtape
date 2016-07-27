@@ -39,7 +39,6 @@ class SongSearchResultsTableViewCell: UITableViewCell {
             self.albumArtImage.image = image
         }
     }
-    
 }
 
 protocol SongSearchDelegate: class {

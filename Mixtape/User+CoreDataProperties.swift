@@ -14,7 +14,7 @@ import CoreData
 
 extension User {
 
-    @NSManaged var username: String?
+    @NSManaged var username: String
     @NSManaged var playlist: Playlist?
     @NSManaged var users: NSOrderedSet?
     @NSManaged var songs: NSSet?

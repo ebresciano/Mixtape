@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     
     func checkForAccount() {
         if account == .existing {
-            if let currentUser = UserController.sharedController.users.first {
+            if let _ = UserController.sharedController.users.first {
                 performSegueWithIdentifier("toPlaylist", sender: self)
             } else {
                 let alertController = UIAlertController(title: "Create an account", message: "Click on need an account!", preferredStyle: .Alert)

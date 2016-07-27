@@ -14,17 +14,17 @@ import CoreData
 class User: SyncableObject, SearchableRecord, CloudKitManagedObject {
     
     static let kType = "User"
+    
     static let kUsername = "username"
     
     private let kUsername = "username"
     
-    convenience init(username: String, playlist: Playlist? = nil, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext){
+    convenience init(username: String, playlist: Playlist? = nil, song: Song? = nil, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext){
         
         guard let entity = NSEntityDescription.entityForName(User.kType, inManagedObjectContext: context) else { fatalError() }
         
         self.init(entity: entity, insertIntoManagedObjectContext: context)
         self.username = username
-        self.playlist = playlist
         self.recordName = NSUUID().UUIDString
     }
     
@@ -37,7 +37,6 @@ class User: SyncableObject, SearchableRecord, CloudKitManagedObject {
     
     @objc func matchesSearchTerm(searchTerm: String) -> Bool {
         return username.containsString(searchTerm) ?? false
-        
     }
     
     var recordType: String = User.kType
@@ -46,8 +45,7 @@ class User: SyncableObject, SearchableRecord, CloudKitManagedObject {
         let recordID = CKRecordID(recordName: recordName)
         let record = CKRecord(recordType: recordType, recordID: recordID)
         record[User.kUsername] = username
-    
-        
+          
         return record
     }
     

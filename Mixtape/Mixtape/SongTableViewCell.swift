@@ -35,15 +35,12 @@ class SongTableViewCell: UITableViewCell {
         trackNameLabel.text = song.title
         artistNameLabel.text = song.artist
         albumArt.image = UIImage()
+        usernameLabel.text = UserController.sharedController.currentUser?.username
         
         if let image = UIImage(data: song.image) {
             albumArt.image = image
         }
         
-//        ImageController.getAlbumArt(song.artworkURLString ?? "") { (image) in
-//            self.albumArt.image = image
-//
-//        }
     }
 
 

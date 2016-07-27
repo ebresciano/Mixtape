@@ -9,22 +9,34 @@
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    @IBOutlet weak var songTitleLabel: UILabel!
-    
-    @IBOutlet weak var artistNameLabel: UIView!
-    
-    @IBOutlet weak var albumArtImage: UIImageView!
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
-
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var songTitleLabel: UILabel!
+    
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
+    @IBOutlet weak var albumArtImage: UIImageView!
+    
+    func updateProfileWithSong(song: Song) {
+        UserController.sharedController.currentUser?.songs
+        songTitleLabel.text = song.title
+        artistNameLabel.text = song.artist
+        albumArtImage.image = UIImage()
+        
+        if let image = UIImage(data: song.image) {
+            albumArtImage.image = image
+        }
+    }
+    
 }
