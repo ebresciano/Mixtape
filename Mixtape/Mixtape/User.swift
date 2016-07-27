@@ -11,7 +11,7 @@ import CloudKit
 import CoreData
 
 
-class User: SyncableObject, SearchableRecord {
+class User: SyncableObject, SearchableRecord, CloudKitManagedObject {
     
     static let kType = "User"
     static let kUsername = "username"
@@ -52,8 +52,7 @@ class User: SyncableObject, SearchableRecord {
     }
     
     convenience required init?(record: CKRecord, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
-        guard let _ = record.creationDate,
-            let username = record[User.kUsername] as? String
+        guard let username = record[User.kUsername] as? String
             else {
                 return nil
         }

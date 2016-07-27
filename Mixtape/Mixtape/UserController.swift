@@ -92,7 +92,7 @@ class UserController {
     
     func subscribeToUser(completion: ((success: Bool, error: NSError?) -> Void)?) {
         let predicate = NSPredicate(value: true)
-        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: "Users", contentAvailable: true, options: .FiresOnRecordCreation) { (subscription, error) in
+        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: "User", contentAvailable: true, options: .FiresOnRecordCreation) { (subscription, error) in
             if let completion = completion {
                 let success = subscription != nil
                 completion(success: success, error: error)
@@ -110,11 +110,13 @@ class UserController {
     }
     
     func addSubscriptionToUser(user: User, alertBody: String?, completion: ((success: Bool, error: NSError?) -> Void)?) {
-        guard let record = user.cloudKitRecord else {
-            fatalError("unable to create cloudKitRereference for subscription") }
-        let recordID = record.recordID
-        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
-        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: user.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: [User.kType], options: .FiresOnRecordCreation) { (subscription, error) in
+//        guard let recordID = user.cloudKitRecordID else {
+//            fatalError("unable to create cloudKitRereference for subscription") }
+//        let recordID = record.recordID
+//        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
+        //TODO: Do I need a predicate
+        let predicate = NSPredicate(value: true)
+        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: user.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: nil, options: .FiresOnRecordCreation) { (subscription, error) in
             if let completion = completion {
                 let success = subscription != nil
                 completion(success:success, error: error)

@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         } else {
             account = .existing
             usernameTextField.hidden = true
-            accountButton.setTitle("Need an account", forState: .Normal)
+            accountButton.setTitle("Need an account?", forState: .Normal)
             loginButton.setTitle("Login", forState: .Normal)
             
         }
@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
     
     func checkForAccount() {
         if account == .existing {
-            
             if let currentUser = UserController.sharedController.users.first {
                 performSegueWithIdentifier("toPlaylist", sender: self)
             } else {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0743FB1D3FEC0C008E300E /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0743FA1D3FEC0C008E300E /* ImageController.swift */; };
+		CC34CA2E1D4927BC0081AC07 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC34CA2D1D4927BC0081AC07 /* ProfileTableViewCell.swift */; };
 		CC636B0F1D36FC20003B4A18 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */; };
 		CC636B111D37043F003B4A18 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC636B101D37043F003B4A18 /* PlaylistViewController.swift */; };
 		CCB593211D306A0E000C6906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB593201D306A0E000C6906 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		CC0743FA1D3FEC0C008E300E /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		CC34CA2D1D4927BC0081AC07 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CC636B0E1D36FC20003B4A18 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		CC636B101D37043F003B4A18 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		CCB5931D1D306A0E000C6906 /* Mixtape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				CC636B101D37043F003B4A18 /* PlaylistViewController.swift */,
 				CCF9C1891D35B8C9002E3E42 /* UserSearchTableViewController.swift */,
 				CCE2CD821D467E1300B1FEF0 /* UserTableViewCell.swift */,
+				CC34CA2D1D4927BC0081AC07 /* ProfileTableViewCell.swift */,
 				CCF9C1871D35B293002E3E42 /* ProfileViewController.swift */,
 				CCCB02641D40304300B68678 /* SongSearchResultsTableViewCell.swift */,
 				CCF9C18D1D35B972002E3E42 /* SongSelectorTableViewController.swift */,
@@ -217,6 +220,9 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 35L3J99R6J;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -265,6 +271,7 @@
 				CCF9C1C21D36B24C002E3E42 /* Song+CoreDataProperties.swift in Sources */,
 				CCF9C1C71D36B63F002E3E42 /* User.swift in Sources */,
 				CCF9C1861D359AC3002E3E42 /* SongTableViewCell.swift in Sources */,
+				CC34CA2E1D4927BC0081AC07 /* ProfileTableViewCell.swift in Sources */,
 				CCF9C1881D35B293002E3E42 /* ProfileViewController.swift in Sources */,
 				CCE2CD831D467E1300B1FEF0 /* UserTableViewCell.swift in Sources */,
 				CCF9C1C11D36B24C002E3E42 /* Playlist+CoreDataProperties.swift in Sources */,

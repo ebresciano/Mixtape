@@ -14,8 +14,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       }
+      
+    }
     // MARK: - Outlets
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -37,5 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         return cell
     }
+    
     
 }
