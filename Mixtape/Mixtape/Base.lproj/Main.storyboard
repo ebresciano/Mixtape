@@ -415,24 +415,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt1-UE-RBf">
-                                                    <rect key="frame" x="58" y="246" width="204" height="41"/>
+                                                    <rect key="frame" x="58" y="263" width="204" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="204" id="rdK-xZ-aRl"/>
-                                                        <constraint firstAttribute="height" constant="41" id="s4S-DS-hUS"/>
+                                                        <constraint firstAttribute="height" constant="24" id="s4S-DS-hUS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-36-iSL">
-                                                    <rect key="frame" x="8" y="20" width="298" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds3-bw-dvF">
-                                                    <rect key="frame" x="76" y="284" width="186" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -442,25 +430,50 @@
                                                         <constraint firstAttribute="height" constant="196" id="XzP-HC-yi6"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-36-iSL">
+                                                    <rect key="frame" x="8" y="20" width="298" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds3-bw-dvF">
+                                                    <rect key="frame" x="58" y="284" width="186" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4d-Fd-8EW">
+                                                    <rect key="frame" x="67" y="244" width="186" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Xu5-oN-KT4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cMI-TJ-Fx2" firstAttribute="centerX" secondItem="qQ8-0w-Czw" secondAttribute="centerX" id="3YL-ir-fP8"/>
+                                                <constraint firstItem="Ds3-bw-dvF" firstAttribute="top" secondItem="G4d-Fd-8EW" secondAttribute="bottom" constant="19" id="6cA-sw-PgX"/>
                                                 <constraint firstItem="cMI-TJ-Fx2" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" constant="50" id="Aek-sC-reO"/>
-                                                <constraint firstItem="Ds3-bw-dvF" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" constant="68" id="DfS-cM-pf2"/>
+                                                <constraint firstItem="Ds3-bw-dvF" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" constant="50" id="DfS-cM-pf2"/>
                                                 <constraint firstItem="BQP-36-iSL" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" id="I5p-Hp-ceE"/>
-                                                <constraint firstItem="Tt1-UE-RBf" firstAttribute="top" secondItem="cMI-TJ-Fx2" secondAttribute="bottom" constant="1" id="KlK-nF-qbS"/>
+                                                <constraint firstItem="Tt1-UE-RBf" firstAttribute="top" secondItem="cMI-TJ-Fx2" secondAttribute="bottom" constant="18" id="KlK-nF-qbS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="BQP-36-iSL" secondAttribute="trailing" constant="6" id="OEt-uO-Yuk"/>
                                                 <constraint firstItem="Ds3-bw-dvF" firstAttribute="top" secondItem="cMI-TJ-Fx2" secondAttribute="bottom" constant="39" id="PX3-YI-9mf"/>
                                                 <constraint firstItem="cMI-TJ-Fx2" firstAttribute="top" secondItem="qQ8-0w-Czw" secondAttribute="top" constant="49" id="QBR-fk-vaJ"/>
                                                 <constraint firstItem="BQP-36-iSL" firstAttribute="top" secondItem="qQ8-0w-Czw" secondAttribute="topMargin" constant="12" id="R8F-LL-w5H"/>
                                                 <constraint firstItem="Tt1-UE-RBf" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" constant="50" id="q9L-xe-m8i"/>
                                                 <constraint firstItem="Ds3-bw-dvF" firstAttribute="bottom" secondItem="qQ8-0w-Czw" secondAttribute="bottomMargin" id="rKN-K5-8t7"/>
-                                                <constraint firstItem="Ds3-bw-dvF" firstAttribute="trailing" secondItem="cMI-TJ-Fx2" secondAttribute="trailing" id="uJm-WU-k2i"/>
+                                                <constraint firstItem="Ds3-bw-dvF" firstAttribute="trailing" secondItem="cMI-TJ-Fx2" secondAttribute="trailing" constant="-18" id="uJm-WU-k2i"/>
+                                                <constraint firstItem="G4d-Fd-8EW" firstAttribute="centerX" secondItem="Tt1-UE-RBf" secondAttribute="centerX" id="w0y-Gc-psT"/>
+                                                <constraint firstItem="G4d-Fd-8EW" firstAttribute="leading" secondItem="qQ8-0w-Czw" secondAttribute="leadingMargin" constant="59" id="xwl-DI-a0f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="albumArt" destination="cMI-TJ-Fx2" id="Oac-Kc-mJt"/>
                                             <outlet property="artistNameLabel" destination="Ds3-bw-dvF" id="5Yc-cB-P4X"/>
+                                            <outlet property="playedTime" destination="G4d-Fd-8EW" id="tgk-97-GLK"/>
                                             <outlet property="trackNameLabel" destination="Tt1-UE-RBf" id="oPv-aI-I3E"/>
                                             <outlet property="usernameLabel" destination="BQP-36-iSL" id="mXX-Cz-eE9"/>
                                         </connections>

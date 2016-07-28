@@ -16,7 +16,7 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     var image = UIImage?()
     
     var songs = [Song]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +54,7 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         return cell
     }
     
-    // MARK: - SearchBar functions 
+    // MARK: - SearchBar functions
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         songSearchBar.resignFirstResponder()
@@ -77,11 +77,11 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         if let indexPath = tableView.indexPathForCell(cell), user = UserController.sharedController.users.first, playlist = user.playlist {
             let song = songs[indexPath.row]
             SongController.sharedController.postSong(song.artist, title: song.title, playlist: playlist, image: song.image ?? NSData(), trackID: song.trackID) {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                let trackID = song.trackID
+                MusicPlayerController.sharedController.setQueWithStoreIDs([trackID])
+                    self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
-    
-    
 }
 

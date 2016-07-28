@@ -21,7 +21,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,10 +30,11 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-    
     // MARK: - Actions
     
     @IBAction func playButtonTapped(sender: AnyObject) {
+        MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
+        MusicPlayerController.sharedController.controller.play()
     }
     
     // MARK: - Outlets

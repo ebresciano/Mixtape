@@ -54,7 +54,6 @@ class UserController {
         }
     }
     
-    
     func createUser(username: String) {
         let user = User(username: username)
         SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
@@ -134,7 +133,6 @@ class UserController {
             }
         }
     }
-    
 }
 
 

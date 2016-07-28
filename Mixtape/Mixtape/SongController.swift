@@ -40,8 +40,7 @@ class SongController {
 //            if success {
 //                print("successfully subscribed")
 //            } }
-        
-    }
+        }
     
     static let baseURLString = "https://itunes.apple.com/search"
     
@@ -64,7 +63,6 @@ class SongController {
                 completion(songs: songs)
             })
         }
-        
     }
     
     static func getAlbumArtForSong(song: Song, completion: ((songImage: UIImage?) -> Void)?) {
@@ -91,7 +89,6 @@ class SongController {
         }
     }
     
-    
     func createPlaylist(user: User, songs: [Song?], completion: ((playlist: Playlist) -> Void)?) {
         let playlist = Playlist(user: user)
         saveContext()
@@ -101,7 +98,6 @@ class SongController {
         }
         
     }
-    
     
     func postSong(artist: String, title: String, playlist: Playlist, image: NSData, trackID: String, completion: (() -> Void)?) {
         let song = Song(title: title, artist: artist, image: image, trackID: trackID, playlist: playlist)
@@ -223,7 +219,6 @@ class SongController {
             }
         }
     }
-    
     
     func pushChangesToCloudKit(completion: ((success: Bool, error: NSError?) -> Void)?) {
         

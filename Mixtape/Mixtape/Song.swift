@@ -33,7 +33,6 @@ class Song: SyncableObject, CloudKitManagedObject {
     
     static let kPlaylist = "playlist"
     
-    
     // Songs that are initialized from this init get added to the MOC that saves to the persistent store
     convenience init(title: String, artist: String, image: NSData, trackID: String, playlist: Playlist, timestamp: NSDate = NSDate(), user: User? = UserController.sharedController.currentUser, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
@@ -83,8 +82,6 @@ class Song: SyncableObject, CloudKitManagedObject {
             let playlistRecord = playlist.cloudKitRecord else { fatalError("Unfortunately a Song Playlist relationship does not exist") }
 
         record[Song.kPlaylist] = CKReference(record: playlistRecord, action: .DeleteSelf)
-
-        
         return record
     }
     
@@ -104,16 +101,10 @@ class Song: SyncableObject, CloudKitManagedObject {
         self.timestamp = timestamp
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record.recordID)
         self.recordName = record.recordID.recordName
-        
     }
     
     func updateWithRecord(record: CKRecord) {
         
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record)
     }
-    
-    
-    
-    
-    
 }

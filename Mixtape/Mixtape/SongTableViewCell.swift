@@ -14,9 +14,8 @@ class SongTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
     // MARK: - Outlets
-
+    
     @IBOutlet weak var albumArt: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -24,11 +23,11 @@ class SongTableViewCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     
     @IBOutlet weak var trackNameLabel: UILabel!
-   
+    
+    @IBOutlet weak var playedTime: UILabel!
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func updateWithSong(song: Song) {
@@ -40,8 +39,5 @@ class SongTableViewCell: UITableViewCell {
         if let image = UIImage(data: song.image) {
             albumArt.image = image
         }
-        
     }
-
-
 }

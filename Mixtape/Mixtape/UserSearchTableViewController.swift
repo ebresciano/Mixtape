@@ -23,7 +23,7 @@ class UserSearchTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       print(users?.count)
+        print(users?.count)
         if let users = users {
             return users.count
         }
@@ -45,15 +45,12 @@ class UserSearchTableViewController: UITableViewController {
             print(users.count)
             if users.count > 0 {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData(
-                    
-                    )
+                    self.tableView.reloadData()
                 })
-
+                
             } else {
                 return
             }
         }
     }
-    
 }

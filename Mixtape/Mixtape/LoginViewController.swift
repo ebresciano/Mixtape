@@ -43,7 +43,6 @@ class LoginViewController: UIViewController {
             usernameTextField.hidden = true
             accountButton.setTitle("Need an account?", forState: .Normal)
             loginButton.setTitle("Login", forState: .Normal)
-            
         }
     }
     
@@ -53,15 +52,14 @@ class LoginViewController: UIViewController {
                 performSegueWithIdentifier("toPlaylist", sender: self)
             } else {
                 let alertController = UIAlertController(title: "Create an account", message: "Click on need an account!", preferredStyle: .Alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-                    
-                    presentViewController(alertController, animated: true, completion: nil)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                
+                presentViewController(alertController, animated: true, completion: nil)
                 print("This person does not have an account")
             }
         } else {
             if let username = usernameTextField.text where username.characters.count > 0 {
                 UserController.sharedController.createUser(username)
-                performSegueWithIdentifier("toPlaylist", sender: self)
             }
         }
     }
@@ -74,8 +72,13 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         checkForAccount()
+        MusicPlayerController.requestStoreKitPermission { (success) in
+            if success == true {
+                self.performSegueWithIdentifier("toPlaylist", sender: self) }
+            else {
+                let alertController = UIAlertController(title: "Apple Music account required", message: "You need to set up an Apple Music account in order to continue", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            }
+        }
     }
-    
-    
 }
-

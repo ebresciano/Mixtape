@@ -20,7 +20,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             usernameLabel.text = currentUser.username
             _ = songs
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,10 +28,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
-    
     var songs: [Song]? {
         if let songs = UserController.sharedController.currentUser?.songs?.allObjects as? [Song] {
-            print(songs)
             return songs
         } else {
             return nil
@@ -53,7 +50,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs!.count ?? 0
+        return songs?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

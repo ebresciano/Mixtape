@@ -10,16 +10,6 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
-    
     // MARK: - Outlets
     
     @IBOutlet weak var songTitleLabel: UILabel!
@@ -27,7 +17,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     
     @IBOutlet weak var albumArtImage: UIImageView!
-    
+
     func updateProfileWithSong(song: Song) {
         songTitleLabel.text = song.title
         artistNameLabel.text = song.artist
@@ -36,5 +26,4 @@ class ProfileTableViewCell: UITableViewCell {
             albumArtImage.image = image
         }
     }
-    
 }

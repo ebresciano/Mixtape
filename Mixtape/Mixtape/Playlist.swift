@@ -48,10 +48,6 @@ class Playlist: SyncableObject, CloudKitManagedObject {
     }
     
     func updateWithRecord(record: CKRecord) {
-        
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record)
     }
-    
-    
-    
 }

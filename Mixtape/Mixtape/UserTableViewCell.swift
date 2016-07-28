@@ -10,19 +10,8 @@ import UIKit
 import CoreData
 
 class UserTableViewCell: UITableViewCell {
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+       
     var user: User?
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
     
     // MARK: - Outlets
     
@@ -64,7 +53,6 @@ class UserTableViewCell: UITableViewCell {
     func updateWithUser(user: User) {
         usernameLabel.text = user.username
         self.user = user
-        
     }
     
     // MARK: - Actions
