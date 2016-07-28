@@ -29,10 +29,8 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var albumArtImage: UIImageView!
     
     func updateProfileWithSong(song: Song) {
-        UserController.sharedController.currentUser?.songs
         songTitleLabel.text = song.title
         artistNameLabel.text = song.artist
-        albumArtImage.image = UIImage()
         
         if let image = UIImage(data: song.image) {
             albumArtImage.image = image

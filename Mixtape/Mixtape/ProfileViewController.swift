@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if let currentUser = UserController.sharedController.currentUser {
             usernameLabel.text = currentUser.username
+            _ = songs
         }
         
     }
@@ -29,8 +30,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    var songs: [Song] {
-        return SongController.sharedController.songs
+    var songs: [Song]? {
+        if let songs = UserController.sharedController.currentUser?.songs?.allObjects as? [Song] {
+            print(songs)
+            return songs
+        } else {
+            return nil
+        }
     }
     
     // MARK: - Outlets
@@ -47,13 +53,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return songs!.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as? ProfileTableViewCell ?? ProfileTableViewCell()
-        let song = songs[indexPath.row]
-        cell.updateProfileWithSong(song)
-        return cell
+        
+        if let song = songs?[indexPath.row] {
+            cell.updateProfileWithSong(song)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
 }

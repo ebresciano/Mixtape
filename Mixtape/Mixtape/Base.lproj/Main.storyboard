@@ -196,21 +196,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55R-9K-giG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55R-9K-giG">
                                 <rect key="frame" x="20" y="90" width="280" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="123" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="isA-F4-Nik">
-                                <rect key="frame" x="0.0" y="155" width="320" height="244"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="123" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="isA-F4-Nik">
+                                <rect key="frame" x="0.0" y="155" width="320" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="Uj4-To-AAQ"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="123" id="H6F-mZ-BM9" customClass="ProfileTableViewCell" customModule="Mixtape" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6F-mZ-BM9" id="TCn-2H-6id">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="122.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EuG-Fx-h40">
@@ -248,14 +251,27 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="albumArtImage" destination="EuG-Fx-h40" id="mTO-vv-mGs"/>
-                                            <outlet property="artistNameLabel" destination="TCn-2H-6id" id="sIW-q3-C0M"/>
+                                            <outlet property="artistNameLabel" destination="EiH-2b-FBO" id="jcA-zE-Sbc"/>
                                             <outlet property="songTitleLabel" destination="PlI-VA-S8W" id="Eek-fA-4AV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="SUX-GL-JI0" id="cu1-HD-xeE"/>
+                                    <outlet property="delegate" destination="SUX-GL-JI0" id="sVe-gJ-Rp6"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="isA-F4-Nik" firstAttribute="leading" secondItem="pX0-eJ-vJ3" secondAttribute="leading" id="LU2-Cb-ooe"/>
+                            <constraint firstItem="55R-9K-giG" firstAttribute="centerX" secondItem="isA-F4-Nik" secondAttribute="centerX" id="Whk-GA-dye"/>
+                            <constraint firstItem="55R-9K-giG" firstAttribute="leading" secondItem="pX0-eJ-vJ3" secondAttribute="leadingMargin" constant="4" id="Xmk-Ab-gxJ"/>
+                            <constraint firstItem="isA-F4-Nik" firstAttribute="bottom" secondItem="2IE-mX-PHx" secondAttribute="top" id="dMi-3g-re9"/>
+                            <constraint firstItem="isA-F4-Nik" firstAttribute="top" secondItem="55R-9K-giG" secondAttribute="bottom" constant="15" id="jeU-1J-ceK"/>
+                            <constraint firstItem="55R-9K-giG" firstAttribute="top" secondItem="hPb-LX-FXW" secondAttribute="bottom" constant="26" id="uOZ-Mb-jSL"/>
+                            <constraint firstAttribute="trailing" secondItem="isA-F4-Nik" secondAttribute="trailing" id="yB7-p5-xXa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZA0-xC-Mjh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2h3-zB-uh0">

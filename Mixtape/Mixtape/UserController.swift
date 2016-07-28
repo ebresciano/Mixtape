@@ -12,7 +12,7 @@ import CoreData
 import CloudKit
 
 class UserController {
-
+    
     let songs = [Song?]()
     
     static let sharedController = UserController()
@@ -34,7 +34,7 @@ class UserController {
             } else {
                 return []
             }
-
+            
         } catch let error as NSError {
             print(error.localizedDescription)
             return []
@@ -54,7 +54,7 @@ class UserController {
         }
     }
     
-
+    
     func createUser(username: String) {
         let user = User(username: username)
         SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
@@ -63,7 +63,7 @@ class UserController {
         }
         
         cloudKitManager.saveRecord(user.cloudKitRecord!) { (record, error) in
-
+            
         }
     }
     
@@ -95,12 +95,9 @@ class UserController {
     }
     
     func addSubscriptionToUser(user: User, alertBody: String?, completion: ((success: Bool, error: NSError?) -> Void)?) {
-//        guard let recordID = user.cloudKitRecordID else {
-//            fatalError("unable to create cloudKitRereference for subscription") }
-//        let recordID = record.recordID
-//        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
-        //TODO: Do I need a predicate
-        let predicate = NSPredicate(value: true)
+        guard let recordID = user.cloudKitRecordID else {
+            fatalError("unable to create cloudKitRereference for subscription") }
+        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
         cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: user.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: nil, options: .FiresOnRecordCreation) { (subscription, error) in
             if let completion = completion {
                 let success = subscription != nil
@@ -137,7 +134,7 @@ class UserController {
             }
         }
     }
-
+    
 }
 
 
