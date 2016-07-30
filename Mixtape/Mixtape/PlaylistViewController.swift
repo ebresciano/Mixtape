@@ -10,7 +10,14 @@ import UIKit
 import CoreData
 import MediaPlayer
 
-class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIToolbarDelegate {
+    
+    var isPlaying = false
+    var timer:NSTimer!
+    
+    static let sharedController = PlaylistViewController()
+
+    @IBOutlet weak var playlistToolbar: UIToolbar!
     
     var fetchedResultsController: NSFetchedResultsController?
     
@@ -19,9 +26,11 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         return SongController.sharedController.songs
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.backgroundColor = UIColor.blackColor()   
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,11 +39,19 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
+
     // MARK: - Actions
     
+    @IBAction func skipBackTapped(sender: AnyObject) {
+        MusicPlayerController.sharedController.controller.skipToNextItem()
+    }
+    @IBAction func skipForewardTapped(sender: AnyObject) {
+        MusicPlayerController.sharedController.controller.skipToPreviousItem()
+    }
     @IBAction func playButtonTapped(sender: AnyObject) {
         MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
         MusicPlayerController.sharedController.controller.play()
+//          timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("updateTime"), userInfo: nil, repeats: true)
     }
     
     // MARK: - Outlets

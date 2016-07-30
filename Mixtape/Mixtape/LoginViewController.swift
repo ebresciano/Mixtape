@@ -66,6 +66,10 @@ class LoginViewController: UIViewController {
     
     // MARK: - Actions
     
+    @IBAction func tapGestureTapped(sender: AnyObject) {
+        usernameTextField.resignFirstResponder()
+    }
+    
     @IBAction func accountButtonTapped(sender: AnyObject) {
         updateLoginView()
     }

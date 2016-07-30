@@ -20,22 +20,29 @@ class SongTableViewCell: UITableViewCell {
     
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var timePlayedLabel: UILabel!
+   
     @IBOutlet weak var artistNameLabel: UILabel!
     
     @IBOutlet weak var trackNameLabel: UILabel!
-    
-    @IBOutlet weak var playedTime: UILabel!
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    func updateTime() {
+        var currentTime = Int()
+        var minutes = currentTime/60
+        var seconds = currentTime - minutes * 60
+        
+        timePlayedLabel.text = NSString(format: "%02d:%02d", minutes,seconds) as String
+    }
+   
     func updateWithSong(song: Song) {
         trackNameLabel.text = song.title
         artistNameLabel.text = song.artist
         albumArt.image = UIImage()
         usernameLabel.text = UserController.sharedController.currentUser?.username
-        
         if let image = UIImage(data: song.image) {
             albumArt.image = image
         }
