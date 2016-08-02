@@ -30,13 +30,13 @@ class SongTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func updateTime() {
-        var currentTime = Int()
-        var minutes = currentTime/60
-        var seconds = currentTime - minutes * 60
-        
-        timePlayedLabel.text = NSString(format: "%02d:%02d", minutes,seconds) as String
-    }
+//    func updateTime() {
+//        var currentTime = Int()
+//        var minutes = currentTime/60
+//        var seconds = currentTime - minutes * 60
+//        
+//        timePlayedLabel.text = NSString(format: "%02d:%02d", minutes,seconds) as String
+//    }
    
     func updateWithSong(song: Song) {
         trackNameLabel.text = song.title

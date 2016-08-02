@@ -20,7 +20,7 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.backgroundColor = UIColor.blackColor()
+        self.tableView.backgroundColor = UIColor.darkGrayColor()
 
         songSearchBar.becomeFirstResponder()
     }
