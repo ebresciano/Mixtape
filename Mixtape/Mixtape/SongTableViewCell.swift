@@ -30,14 +30,8 @@ class SongTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-//    func updateTime() {
-//        var currentTime = Int()
-//        var minutes = currentTime/60
-//        var seconds = currentTime - minutes * 60
-//        
-//        timePlayedLabel.text = NSString(format: "%02d:%02d", minutes,seconds) as String
-//    }
-   
+    weak var delegate: timePlayedLabelDelegate?
+       
     func updateWithSong(song: Song) {
         trackNameLabel.text = song.title
         artistNameLabel.text = song.artist
@@ -47,4 +41,8 @@ class SongTableViewCell: UITableViewCell {
             albumArt.image = image
         }
     }
+}
+
+protocol timePlayedLabelDelegate: class {
+    func timerFired()
 }

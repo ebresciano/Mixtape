@@ -15,8 +15,12 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     var isPlaying = false
     var timer:NSTimer!
     
+    let mp = MPMusicPlayerController.systemMusicPlayer()
+    
+    var songCell = SongTableViewCell()
+    
     static let sharedController = PlaylistViewController()
-
+    
     @IBOutlet weak var playlistToolbar: UIToolbar!
     
     var fetchedResultsController: NSFetchedResultsController?
@@ -26,11 +30,10 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         return SongController.sharedController.songs
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.backgroundColor = UIColor.blackColor()   
+        self.tableView.backgroundColor = UIColor.blackColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,7 +42,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-
+    
     // MARK: - Actions
     
     @IBAction func skipBackTapped(sender: AnyObject) {
@@ -48,12 +51,18 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func skipForewardTapped(sender: AnyObject) {
         MusicPlayerController.sharedController.controller.skipToPreviousItem()
     }
-    @IBAction func playButtonTapped(sender: AnyObject) {
-        MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
-        MusicPlayerController.sharedController.controller.play()
-//          timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("updateTime"), userInfo: nil, repeats: true)
-    }
     
+    
+    @IBAction func playButtonTapped(sender: AnyObject) {
+        MusicPlayerController.sharedController.controller.prepareToPlay()
+        if isPlaying == false {
+            MusicPlayerController.sharedController.controller.play()
+            isPlaying = true
+        } else if isPlaying == true {
+            MusicPlayerController.sharedController.controller.pause()
+            isPlaying = false
+        }
+    }
     // MARK: - Outlets
     
     @IBOutlet weak var playButton: UIBarButtonItem!

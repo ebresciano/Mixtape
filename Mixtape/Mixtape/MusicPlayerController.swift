@@ -50,4 +50,8 @@ class MusicPlayerController {
         controller.skipToPreviousItem()
     }
     
+    func prepareToPlay(trackID: String) {
+        controller.prepareToPlay()
+    }
+    
 }
