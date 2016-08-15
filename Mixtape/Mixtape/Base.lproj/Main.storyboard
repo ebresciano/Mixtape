@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="8OO-eu-cEd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MIXTAPE background login" translatesAutoresizingMaskIntoConstraints="NO" id="8OO-eu-cEd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="116" y="392" width="87" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Need an account?">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="0.61672952586206897" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="accountButtonTapped:" destination="G6G-rq-fxy" eventType="touchUpInside" id="76f-uT-DC5"/>
@@ -36,17 +36,18 @@
                                 <rect key="frame" x="138" y="420" width="44" height="30"/>
                                 <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
                                 <state key="normal" title="LOGIN">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.58556034482758623" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="G6G-rq-fxy" eventType="touchUpInside" id="zru-vJ-td6"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Username..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="m4r-la-7Jm">
-                                <rect key="frame" x="32" y="229" width="257" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="m4r-la-7Jm">
+                                <rect key="frame" x="64" y="225" width="192" height="30"/>
+                                <color key="backgroundColor" red="0.34901960784313724" green="0.2627450980392157" blue="0.30980392156862746" alpha="0.36751077586206898" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.34901960784313724" green="0.2627450980392157" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5cg-qQ-pxz"/>
+                                    <constraint firstAttribute="width" constant="192" id="xQL-dx-Eh7"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -58,15 +59,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8OO-eu-cEd" secondAttribute="trailing" id="4HV-MY-Bl7"/>
                             <constraint firstItem="8OO-eu-cEd" firstAttribute="top" secondItem="7fP-zV-f81" secondAttribute="top" id="4kq-b0-0q3"/>
-                            <constraint firstItem="m4r-la-7Jm" firstAttribute="centerX" secondItem="8OO-eu-cEd" secondAttribute="centerX" id="Cbm-he-Zn2"/>
+                            <constraint firstItem="m4r-la-7Jm" firstAttribute="centerY" secondItem="8OO-eu-cEd" secondAttribute="centerY" id="5tU-6N-ajH"/>
                             <constraint firstItem="NPd-Lt-jNH" firstAttribute="top" secondItem="8OO-eu-cEd" secondAttribute="bottom" id="FRL-YC-dlR"/>
                             <constraint firstItem="huN-Go-jgn" firstAttribute="centerX" secondItem="wKq-5B-Pra" secondAttribute="centerX" id="V4g-2w-iwJ"/>
                             <constraint firstItem="wKq-5B-Pra" firstAttribute="top" secondItem="huN-Go-jgn" secondAttribute="bottom" constant="4" id="WdM-Hj-tF6"/>
-                            <constraint firstItem="m4r-la-7Jm" firstAttribute="leading" secondItem="7fP-zV-f81" secondAttribute="leadingMargin" constant="16" id="YXb-G2-4to"/>
                             <constraint firstItem="8OO-eu-cEd" firstAttribute="leading" secondItem="7fP-zV-f81" secondAttribute="leading" id="abo-cz-UZJ"/>
-                            <constraint firstItem="m4r-la-7Jm" firstAttribute="top" secondItem="XpN-WH-OhM" secondAttribute="bottom" constant="209" id="aiI-Q2-fxp"/>
                             <constraint firstItem="NPd-Lt-jNH" firstAttribute="top" secondItem="wKq-5B-Pra" secondAttribute="bottom" constant="30" id="ouB-Be-zSB"/>
                             <constraint firstItem="wKq-5B-Pra" firstAttribute="centerX" secondItem="7fP-zV-f81" secondAttribute="centerX" id="rtj-7K-mgn"/>
+                            <constraint firstItem="m4r-la-7Jm" firstAttribute="centerX" secondItem="7fP-zV-f81" secondAttribute="centerX" id="xuP-OX-cU0"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="nxH-xK-JjV" appends="YES" id="eno-jj-SrU"/>
@@ -88,7 +88,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="654" y="119"/>
+            <point key="canvasLocation" x="644" y="-3"/>
         </scene>
         <!--Song Selector Table View Controller-->
         <scene sceneID="z4r-vL-3mH">
@@ -389,9 +389,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-kG-gky">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
+                                <rect key="frame" x="15" y="539" width="345" height="44"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0MA-zU-RoI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fia-qy-wWc">
@@ -410,9 +410,14 @@
                                     <constraint firstAttribute="height" constant="44" id="y4B-Fc-gZH"/>
                                 </constraints>
                                 <blurEffect style="dark"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="479" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Yw-Cd-I6s">
-                                <rect key="frame" x="0.0" y="8" width="375" height="595"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="416" id="j6T-87-NFo"/>
@@ -493,10 +498,10 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5z-wh-tqA">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.71764705882352942" green="0.71764705882352942" blue="0.71764705882352942" alpha="0.76000000000000001" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="15" y="539" width="345" height="44"/>
+                                <color key="backgroundColor" red="0.34901960784313724" green="0.2627450980392157" blue="0.30588235294117649" alpha="0.92227909482758619" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <barButtonItem systemItem="compose" id="Jl2-LI-BBT">
+                                    <barButtonItem image="add song Icon" id="Jl2-LI-BBT">
                                         <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="Fh6-8K-Q4G" kind="show" id="nyJ-na-sw2"/>
@@ -524,27 +529,32 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="apf-BN-Nz6"/>
-                                    <barButtonItem systemItem="add" id="hei-x7-4yq">
-                                        <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem image="profile icon" id="hei-x7-4yq">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="Ol8-ue-LCE" kind="show" identifier="toProfile" id="ukX-Br-8UK"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                                 <color key="barTintColor" red="0.71764705882352942" green="0.71764705882352942" blue="0.71764705882352942" alpha="0.51818426724137934" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" red="0.074509803921568626" green="0.074509803921568626" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="f5z-wh-tqA" firstAttribute="leading" secondItem="tFE-YU-28H" secondAttribute="leading" id="0Lh-5B-q8m"/>
+                            <constraint firstItem="f5z-wh-tqA" firstAttribute="leading" secondItem="tFE-YU-28H" secondAttribute="leading" constant="15" id="0Lh-5B-q8m"/>
                             <constraint firstItem="0Yw-Cd-I6s" firstAttribute="leading" secondItem="tFE-YU-28H" secondAttribute="leading" id="2eh-yh-Aum"/>
-                            <constraint firstItem="f5z-wh-tqA" firstAttribute="top" secondItem="0Yw-Cd-I6s" secondAttribute="bottom" constant="-44" id="CCb-Oq-BN5"/>
-                            <constraint firstAttribute="trailing" secondItem="7aQ-kG-gky" secondAttribute="trailing" id="NOa-1B-puP"/>
-                            <constraint firstItem="BZX-lR-ycB" firstAttribute="top" secondItem="f5z-wh-tqA" secondAttribute="bottom" id="T0G-Ad-O9h"/>
-                            <constraint firstItem="7aQ-kG-gky" firstAttribute="leading" secondItem="tFE-YU-28H" secondAttribute="leading" id="a6E-lp-l54"/>
-                            <constraint firstAttribute="trailing" secondItem="f5z-wh-tqA" secondAttribute="trailing" id="le8-iH-6af"/>
-                            <constraint firstItem="BZX-lR-ycB" firstAttribute="top" secondItem="7aQ-kG-gky" secondAttribute="bottom" id="pY6-Gr-XN8"/>
-                            <constraint firstItem="0Yw-Cd-I6s" firstAttribute="top" secondItem="5Du-gH-LXX" secondAttribute="bottom" constant="8" id="q2w-9K-xbN"/>
+                            <constraint firstItem="f5z-wh-tqA" firstAttribute="top" secondItem="0Yw-Cd-I6s" secondAttribute="bottom" constant="-64" id="CCb-Oq-BN5"/>
+                            <constraint firstAttribute="trailing" secondItem="7aQ-kG-gky" secondAttribute="trailing" constant="15" id="NOa-1B-puP"/>
+                            <constraint firstItem="BZX-lR-ycB" firstAttribute="top" secondItem="f5z-wh-tqA" secondAttribute="bottom" constant="20" id="T0G-Ad-O9h"/>
+                            <constraint firstItem="7aQ-kG-gky" firstAttribute="leading" secondItem="tFE-YU-28H" secondAttribute="leading" constant="15" id="a6E-lp-l54"/>
+                            <constraint firstAttribute="trailing" secondItem="f5z-wh-tqA" secondAttribute="trailing" constant="15" id="le8-iH-6af"/>
+                            <constraint firstItem="BZX-lR-ycB" firstAttribute="top" secondItem="7aQ-kG-gky" secondAttribute="bottom" constant="20" id="pY6-Gr-XN8"/>
+                            <constraint firstItem="0Yw-Cd-I6s" firstAttribute="top" secondItem="5Du-gH-LXX" secondAttribute="bottom" id="q2w-9K-xbN"/>
                             <constraint firstAttribute="trailing" secondItem="0Yw-Cd-I6s" secondAttribute="trailing" id="zYW-Cn-1nr"/>
                         </constraints>
                     </view>
@@ -608,8 +618,7 @@
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="cN7-yl-le8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="0.24781788793103449" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="0.39857219827586204" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.34901960784313724" green="0.2627450980392157" blue="0.30588235294117649" alpha="0.27839439655172415" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0039215686269999999" green="0.066666666669999999" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -625,6 +634,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="588" height="1054"/>
+        <image name="MIXTAPE background login" width="750" height="1334"/>
+        <image name="add song Icon" width="32" height="31"/>
+        <image name="profile icon" width="32" height="31"/>
     </resources>
 </document>
