@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.tableView.backgroundColor = UIColor.blackColor()
+//         self.tableView.backgroundColor = UIColor.blackColor()
         
         if let currentUser = UserController.sharedController.currentUser {
             usernameLabel.text = currentUser.username

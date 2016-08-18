@@ -13,9 +13,6 @@ import MediaPlayer
 class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIToolbarDelegate {
     
     var isPlaying = false
-    var timer:NSTimer!
-    
-    let mp = MPMusicPlayerController.systemMusicPlayer()
     
     var songCell = SongTableViewCell()
     
@@ -38,10 +35,8 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         tableView.reloadData()
     }
-    
     
     // MARK: - Actions
     
@@ -52,8 +47,8 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         MusicPlayerController.sharedController.controller.skipToPreviousItem()
     }
     
-    
     @IBAction func playButtonTapped(sender: AnyObject) {
+        MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
         MusicPlayerController.sharedController.controller.prepareToPlay()
         if isPlaying == false {
             MusicPlayerController.sharedController.controller.play()

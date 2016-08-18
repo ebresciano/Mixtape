@@ -37,7 +37,6 @@ class CloudKitManager {
         }
     }
     
-    
     func fetchUserNameFromRecordID(recordID: CKRecordID, completion: ((firstName: String?, lastName: String?)-> Void)?) {
         let operation = CKDiscoverUserInfosOperation(emailAddresses: nil, userRecordIDs: [recordID])
         
