@@ -23,12 +23,15 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     var fetchedResultsController: NSFetchedResultsController?
     
     @IBOutlet weak var tableView: UITableView!
+   // var songs = SongController.sharedController.songs
+    
     var songs: [Song] {
         return SongController.sharedController.songs
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
         
         self.tableView.backgroundColor = UIColor.blackColor()
     }
@@ -48,8 +51,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func playButtonTapped(sender: AnyObject) {
-        MusicPlayerController.sharedController.setQueWithStoreIDs(songs.map {$0.trackID})
-        MusicPlayerController.sharedController.controller.prepareToPlay()
+    MusicPlayerController.sharedController.controller.prepareToPlay()
         if isPlaying == false {
             MusicPlayerController.sharedController.controller.play()
             isPlaying = true

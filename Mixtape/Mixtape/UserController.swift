@@ -6,15 +6,20 @@
 //  Copyright © 2016 Eva Bresciano. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 import CloudKit
 
 class UserController {
     
+    var playlist = Playlist()
+    
+    var isSyncing: Bool = false
+    
     let songs = [Song?]()
     
+    private let kUserData = "userData"
+
     static let sharedController = UserController()
     
     private let cloudKitManager = CloudKitManager()
@@ -22,14 +27,16 @@ class UserController {
     let fetchRequest = NSFetchRequest(entityName: "User")
     
     var currentUser: User? {
-        return users.first
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [User] ?? []
+        return results.first ?? nil
     }
+    //var followedUsers = [User]()
+    
     
     var users: [User] {
         let moc = Stack.sharedStack.managedObjectContext
         do {
             if let users = try moc.executeFetchRequest(fetchRequest) as? [User] {
-                print(users)
                 return users
             } else {
                 return []
@@ -54,6 +61,8 @@ class UserController {
         }
     }
     
+    
+
     func createUser(username: String) {
         let user = User(username: username)
         SongController.sharedController.createPlaylist(user, songs: songs) { (playlist) in
@@ -64,7 +73,21 @@ class UserController {
         cloudKitManager.saveRecord(user.cloudKitRecord!) { (record, error) in
             
         }
+        
+        if let userCloudKitRecord = user.cloudKitRecord {
+            cloudKitManager.saveRecord(userCloudKitRecord, completion: { (record, error) in
+                if let record = record {
+                    user.update(record)
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        }
+        
+        performFullSync()
     }
+    
+    // So users have an array of people they follow. If the "Follow" button is tapped on a user, then add that users display name to the current users "Following" array. make main feed the current users, following users songs by time of post.
     
     func saveContext() {
         do {
@@ -74,65 +97,128 @@ class UserController {
         }
     }
     
-    func subscribeToUser(completion: ((success: Bool, error: NSError?) -> Void)?) {
-        let predicate = NSPredicate(value: true)
-        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: "User", contentAvailable: true, options: .FiresOnRecordCreation) { (subscription, error) in
-            if let completion = completion {
-                let success = subscription != nil
-                completion(success: success, error: error)
-            }
-        }
-    }
-    
-    func checkSubscriptionToUser(user: User, completion: ((subscribed: Bool) -> Void)?) {
-        cloudKitManager.fetchSubscription(user.recordName) { (subscription, error) in
-            if let completion = completion {
-                let success = subscription != nil
-                completion(subscribed: success)
-            }
-        }
-    }
-    
-    func addSubscriptionToUser(user: User, alertBody: String?, completion: ((success: Bool, error: NSError?) -> Void)?) {
-        guard let recordID = user.cloudKitRecordID else {
-            fatalError("unable to create cloudKitRereference for subscription") }
-        let predicate = NSPredicate(format: "user == %@", argumentArray: [recordID])
-        cloudKitManager.subscribe(User.kType, predicate: predicate, subscriptionID: user.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: nil, options: .FiresOnRecordCreation) { (subscription, error) in
-            if let completion = completion {
-                let success = subscription != nil
-                completion(success:success, error: error)
-            }
-        }
-    }
-    
-    func removeSubscriptionToUser(user: User, completion: ((success: Bool, error: NSError?) -> Void)?) {
-        let subscriptionID = user.recordName
-        cloudKitManager.unsubscribe(subscriptionID) { (subscriptionID, error) in
-            if let completion = completion {
-                let success = subscriptionID != nil
-                completion(success: success, error: error)
-            }
-        }
-    }
-    
-    func toggleUserPostsSubscription(user: User, completion: ((success: Bool, isSubscribed: Bool, error: NSError?) -> Void)?) {
-        cloudKitManager.fetchSubscriptions { (subscriptions, error) in
-            if subscriptions?.filter({$0.subscriptionID == user.recordName}).first != nil {
-                self.removeSubscriptionToUser(user, completion: { (success, error) in
-                    if let completion = completion {
-                        completion(success: success, isSubscribed: false, error: error)
-                    }
-                })
-                
+    func userWithName(userRecordID: CKRecordID, completion: ((user: User?) -> Void)?) {
+        cloudKitManager.fetchRecordWithID(userRecordID) { (record, error) in
+            if let record = record,
+                let user = User(record: record) {
+                if let completion = completion{
+                    completion(user: user)
+                }
             } else {
-                self.addSubscriptionToUser(user, alertBody: "AAAA!", completion: { (success, error) in
-                    if let completion = completion {
-                        completion(success: success, isSubscribed: true, error: error)
-                    }
-                })
+                if let completion = completion {
+                    completion(user: nil)
+                }
             }
         }
     }
+    
+    func pushChangesToCloudKit(user: User, completion: ((success: Bool, error: NSError?)->Void)?) {
+        guard let userRecord = user.cloudKitRecord else { return }
+        cloudKitManager.saveRecords([userRecord], perRecordCompletion: nil, completion: nil)
+    }
+    
+    func fetchUserRecords(type: String, completion: ((records:[CKRecord]) -> Void)?) {
+        let predicate = NSPredicate(value: true)
+        cloudKitManager.fetchRecordsWithType(type, predicate: predicate, recordFetchedBlock: { (record) in
+        }) { (records, error) in
+            if error != nil {
+                print("Error: Could not retrieve user records\(error?.localizedDescription)")
+            }
+            if let completion = completion, records = records {
+                completion(records: records)
+            }
+        }
+    }
+    
+    // MARK: - Sync
+    func syncedRecords(type: String) -> [CloudKitManagedObject] {
+        
+        let fetchRequest = NSFetchRequest(entityName: type)
+        let predicate = NSPredicate(format: "recordIDData != nil")
+        
+        fetchRequest.predicate = predicate
+        
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [CloudKitManagedObject] ?? []
+        
+        return results
+    }
+    
+    func unsyncedRecords(type: String) -> [CloudKitManagedObject] {
+        
+        let fetchRequest = NSFetchRequest(entityName: type)
+        let predicate = NSPredicate(format: "recordIDData == nil")
+        
+        fetchRequest.predicate = predicate
+        
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [CloudKitManagedObject] ?? []
+        
+        return results
+    }
+    
+    func performFullSync(completion: (() -> Void)? = nil) {
+        
+        if isSyncing {
+            if let completion = completion {
+                completion()
+            }
+            
+        } else {
+            isSyncing = true
+            
+            self.fetchNewRecords("User") {
+                
+                self.isSyncing = false
+                
+                if let completion = completion {
+                    
+                    completion()
+                }
+            }
+        }
+    }
+    
+    func fetchNewRecords(type: String, completion: (() -> Void)?) {
+        
+        let referencesToExclude = syncedRecords(type).flatMap({ $0.cloudKitReference })
+        var predicate = NSPredicate(format: "NOT(recordID IN %@)", argumentArray: [referencesToExclude])
+        
+        if referencesToExclude.isEmpty {
+            predicate = NSPredicate(value: true)
+        }
+        
+        cloudKitManager.fetchRecordsWithType(type, predicate: predicate, recordFetchedBlock: { (record) in
+            
+            switch type {
+                
+            case "Playlist":
+                let _ = Playlist(record: record)
+                
+            default:
+                return
+            }
+            
+            self.saveContext()
+            
+        }) { (records, error) in
+            
+            if error != nil {
+                print("😱 Error fetching records \(error?.localizedDescription)")
+            }
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
+  //  func addUserToPlaylist(playlist: Playlist, user: User) {
+       // followedUsers.append(user)
+   // }
+    
+    //    func removeUserFromPlaylist(playlist: Playlist, user: User) {
+    //        let unfollowedUser = followedUsers.filter ({
+    //           $0.username == User.username })
+    //  }
 }
 
 

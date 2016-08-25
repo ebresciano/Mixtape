@@ -17,6 +17,10 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
     
     var songs = [Song]()
     
+    var loadingIndicator: UIActivityIndicatorView!
+    
+    var loadingIndicatorView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,13 +66,28 @@ class SongSelectorTableViewController: UITableViewController, SongSearchDelegate
         songSearchBar.resignFirstResponder()
     }
     
+    func presentLoadingIndicator() {
+        loadingIndicatorView = UIView(frame: CGRectMake((self.view.frame.width / 2) - 30, (self.view.frame.height / 2) - 90, 60, 60))
+        loadingIndicatorView.layer.cornerRadius = 15
+        loadingIndicatorView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.8)
+        loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, loadingIndicatorView.frame.width, loadingIndicatorView.frame.height))
+        loadingIndicator.activityIndicatorViewStyle = .WhiteLarge
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicatorView.addSubview(loadingIndicator)
+        self.view.addSubview(loadingIndicatorView)
+        loadingIndicator.startAnimating()
+    }
+
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        presentLoadingIndicator()
         guard let searchTerm = searchBar.text else { return }
         SongController.searchSongsByTitle(searchTerm) { (songs) in
             self.songs = songs
-            print(songs.count)
             if songs.count > 0 {
                 self.tableView.reloadData()
+                self.loadingIndicator.stopAnimating()
+                self.loadingIndicatorView.hidden = true
             } else {
                 return
             }

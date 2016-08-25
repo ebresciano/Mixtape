@@ -11,12 +11,12 @@ import CoreData
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
-    var fetchedResultsController: NSFetchedResultsController?
+//    var fetchedResultsController: NSFetchedResultsController?
+    
+    // MARK: Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//         self.tableView.backgroundColor = UIColor.blackColor()
         
         if let currentUser = UserController.sharedController.currentUser {
             usernameLabel.text = currentUser.username
@@ -30,13 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
-    var songs: [Song]? {
-        if let songs = UserController.sharedController.currentUser?.songs?.allObjects as? [Song] {
-            return songs
-        } else {
-            return nil
-        }
-    }
+    var songs: [Song]? = UserController.sharedController.currentUser?.songs?.allObjects as? [Song]
     
     // MARK: - Outlets
     
@@ -57,12 +51,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as? ProfileTableViewCell ?? ProfileTableViewCell()
-        
-        if let song = songs?[indexPath.row] {
-            cell.updateProfileWithSong(song)
-            return cell
-        } else {
-            return UITableViewCell()
+                   if let song = songs?[indexPath.row] {
+                cell.updateProfileWithSong(song)
+                return cell
+            } else {
+                return UITableViewCell()
         }
     }
+    
+    // Override to support editing the table view.
+   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let song = SongController.sharedController.songs[indexPath.row]
+            SongController.sharedController.deleteSong(song)
+            songs?.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadData()
+        }
+    }
+
 }
+
+
+

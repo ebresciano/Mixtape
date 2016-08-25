@@ -14,6 +14,7 @@ class Playlist: SyncableObject, CloudKitManagedObject {
     
     static let kType = "Playlist"
     static let kUser = "User"
+    //var followedUsers = [User]()
     
     convenience init(user: User, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
@@ -25,6 +26,12 @@ class Playlist: SyncableObject, CloudKitManagedObject {
         self.songs = nil
     }
     
+    var currentUser: User? {
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        let results = (try? Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequest)) as? [User] ?? []
+        return results.first ?? nil
+    }
+
     var recordType: String = Playlist.kType
     
     var cloudKitRecord: CKRecord? {

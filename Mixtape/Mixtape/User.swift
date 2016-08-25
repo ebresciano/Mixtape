@@ -69,7 +69,6 @@ class User: SyncableObject, SearchableRecord, CloudKitManagedObject {
         
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record)
     }
-
     
 }
 

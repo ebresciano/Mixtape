@@ -10,8 +10,13 @@ import UIKit
 import CoreData
 
 class UserTableViewCell: UITableViewCell {
-       
+    
     var user: User?
+    
+    func viewDidLoad() {
+    user = UserController.sharedController.currentUser
+        
+    }
     
     // MARK: - Outlets
     
@@ -19,35 +24,23 @@ class UserTableViewCell: UITableViewCell {
     
     @IBOutlet weak var followButton: UIButton!
     
-    enum OtherUser {
-        case following
-        case notFollowing
-    }
+  //  enum OtherUser {
+  //      case following
+   //     case notFollowing
+  //  }
     
-    var otherUser = OtherUser.notFollowing
+    //var otherUser = OtherUser.notFollowing
     
     func updateFollowButton() {
-        
-        guard let user = user else { return }
-        
-        if otherUser  == .following {
-            otherUser = .notFollowing
-            followButton.setTitle("Follow", forState: .Normal)
-            UserController.sharedController.removeSubscriptionToUser(user, completion: { (success, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
+                
+       // if otherUser  == .following {
+          //  otherUser = .notFollowing
+          //  followButton.setTitle("Follow", forState: .Normal)
             
-        } else {
-            otherUser = .following
+       // } else {
+            //otherUser = .following
             followButton.setTitle("Unfollow", forState: .Normal)
-            UserController.sharedController.addSubscriptionToUser(user, alertBody: "AAA!", completion: { (success, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-        }
+    
     }
     
     func updateWithUser(user: User) {
