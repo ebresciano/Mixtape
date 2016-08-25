@@ -20,7 +20,7 @@
     <entity name="User" representedClassName=".User" parentEntity="SyncableObject" syncable="YES">
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="user" inverseEntity="Playlist" syncable="YES"/>
-        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Song" inverseName="user" inverseEntity="Song" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="user" inverseEntity="Song" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="User" inverseName="users" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>

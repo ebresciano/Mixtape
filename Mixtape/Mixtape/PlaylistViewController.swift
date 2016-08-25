@@ -23,7 +23,6 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     var fetchedResultsController: NSFetchedResultsController?
     
     @IBOutlet weak var tableView: UITableView!
-   // var songs = SongController.sharedController.songs
     
     var songs: [Song] {
         return SongController.sharedController.songs

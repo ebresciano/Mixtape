@@ -30,7 +30,7 @@ class SongTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func updateWithSong(song: Song) {
+   func updateWithSong(song: Song) {
         trackNameLabel.text = song.title
         artistNameLabel.text = song.artist
         albumArt.image = UIImage()

@@ -21,9 +21,13 @@ class ProfileTableViewCell: UITableViewCell {
     func updateProfileWithSong(song: Song) {
         songTitleLabel.text = song.title
         artistNameLabel.text = song.artist
-        
+        albumArtImage.image = UIImage()
         if let image = UIImage(data: song.image) {
             albumArtImage.image = image
         }
+
     }
 }
+
+
+   

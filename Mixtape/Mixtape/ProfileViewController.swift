@@ -11,7 +11,7 @@ import CoreData
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
-//    var fetchedResultsController: NSFetchedResultsController?
+    //    var fetchedResultsController: NSFetchedResultsController?
     
     // MARK: Life cycle methods
     
@@ -51,16 +51,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as? ProfileTableViewCell ?? ProfileTableViewCell()
-                   if let song = songs?[indexPath.row] {
-                cell.updateProfileWithSong(song)
-                return cell
-            } else {
-                return UITableViewCell()
+        if let song = songs?.reverse()[indexPath.row] {
+            cell.updateProfileWithSong(song)
+            return cell
+        } else {
+            return UITableViewCell()
         }
     }
     
     // Override to support editing the table view.
-   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let song = SongController.sharedController.songs[indexPath.row]
             SongController.sharedController.deleteSong(song)
@@ -69,7 +69,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.reloadData()
         }
     }
-
 }
 
 
